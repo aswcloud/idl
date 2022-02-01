@@ -1,4 +1,4 @@
-module github.com/aswcloud/idl
+module github.com/aswcloud/idl/protos/v1
 
 go 1.17
 
