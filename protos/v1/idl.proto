@@ -1,7 +1,7 @@
 // protos/v1/user/user.proto
 syntax = "proto3";
 
-package idl;
+package v1;
 
 option go_package = "github.com/aswcloud/idl/protos/v1";
 
