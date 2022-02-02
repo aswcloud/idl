@@ -6,8 +6,8 @@ package v1;
 option go_package = "github.com/aswcloud/gen/go/v1";
 
 service User {
-    rpc GetUser(GetUserRequest) returns (GetUserResponse);
-    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {}
 }
 
 message UserMessage {
