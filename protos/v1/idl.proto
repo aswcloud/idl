@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package v1;
 
-option go_package = "github.com/aswcloud/idl/protos/v1";
+option go_package = "github.com/aswcloud/gen/go/v1";
 
 service User {
     rpc GetUser(GetUserRequest) returns (GetUserResponse);
