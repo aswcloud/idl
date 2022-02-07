@@ -9,3 +9,9 @@ message Void {}
 message Uuid { 
     string uuid = 1;
 }
+
+message Result { 
+    bool result = 1;
+    optional string error = 2;
+    repeated string any = 3;
+}

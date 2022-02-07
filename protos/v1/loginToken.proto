@@ -7,7 +7,7 @@ option go_package = "github.com/aswcloud/gen/go/v1";
 import "base.proto";
 
 service Token {
-    rpc CreateRefreshToken(UserLogin) returns (RefreshToken);
+    rpc CreateRefreshToken(UserLoginMessage) returns (RefreshToken);
     
     // Header Check! Token!
     rpc UpdatehRefreshToken(Uuid) returns (RefreshToken);
@@ -20,7 +20,7 @@ message LoginTokenMessage {
     optional string message = 2;
 }
 
-message UserLogin { 
+message UserLoginMessage { 
     string user_id = 1;
     string user_password = 2;
     repeated int32 role = 3;
