@@ -62,5 +62,3 @@ jobs:
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
           branch: "release-v1-swift"
-          force: true
-          
