@@ -34,7 +34,6 @@ jobs:
           mkdir -p ./build/Sources/AswProtobuf
           ls
           pwd
-          $PATH
           for file in "./scripts/"*.proto
           do
           	protoc --swift_out=$DIR --grpc-swift_out=$DIR -I ./scripts "$file"
