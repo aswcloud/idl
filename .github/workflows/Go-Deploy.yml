@@ -53,6 +53,8 @@ jobs:
       - name: copy
         run: |
           find . -name "*.go" -delete
+          pwd
+          ls
           cp -f ./* ../idl/
     
       - name: Add & Commit
