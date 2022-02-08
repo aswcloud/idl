@@ -1,0 +1,73 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Go-Deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+      
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+          
+      - name: Run scripts
+        run: |
+          mkdir ../test
+          cp -R ./protos/v1/* ../test
+          cd ../test
+          
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+          go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+          export PATH="$PATH:$HOME/go/bin"
+          for file in *.proto
+          do
+            protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative -I . "$file"
+          done
+          
+      
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: "release-v1-go"
+          clean: true
+        
+      - name: copy
+        run: |
+          find . -name "*.go" -delete
+          cp -f ./* ../idl/
+    
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v4.4.0
+        with:
+          add: 'Sources/AswProtobuf'
+          ref: "release-v1-swift"
+          author_name: 'github-action [BOT]'
+          author_email: 'aoikazto@naver.com'
+          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          
+      - name: Push commit
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GIT_TOKEN }}
+          branch: "release-v1-swift"
+          force: true
+          
