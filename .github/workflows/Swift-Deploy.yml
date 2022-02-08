@@ -28,7 +28,6 @@ jobs:
       - name: Run a one-line script
         run: |
           cp -R ./protos/v1 ./scripts
-          chmod +x ./linux_swift.sh
           pwd
           ls -al
           wget -P ./scripts/ https://github.com/grpc/grpc-swift/releases/download/1.6.1/protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip
