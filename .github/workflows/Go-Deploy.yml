@@ -42,7 +42,7 @@ jobs:
           do
             protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative -I . "$file"
           done
-          
+          find . -name "*.proto" -delete
       
       - name: Checkout gh-pages branch
         uses: actions/checkout@v2
