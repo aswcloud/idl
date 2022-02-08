@@ -205,7 +205,7 @@ var UserAccount_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "user.proto",
+	Metadata: "test.proto",
 }
 
 // OrganizationAccountClient is the client API for OrganizationAccount service.
@@ -435,5 +435,5 @@ var OrganizationAccount_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "user.proto",
+	Metadata: "test.proto",
 }
