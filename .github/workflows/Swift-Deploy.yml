@@ -51,8 +51,8 @@ jobs:
         with:
           add: 'Sources/AswProtobuf'
           ref: "release-v1-swift"
-          author_name: 'github-action [BOT]'
-          author_email: 'aoikazto@naver.com'
+#          author_name: 'github-action [BOT]'
+#          author_email: 'aoikazto@naver.com'
           
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
