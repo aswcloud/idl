@@ -29,7 +29,7 @@ jobs:
         run: |
           cp -R ./protos/v1/* ./scripts
           wget https://github.com/grpc/grpc-swift/releases/download/1.6.1/protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip
-          unzip ./protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip -d /usr/bin
+          sudo unzip ./protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip -d /usr/bin
           DIR="./build/Sources/AswProtobuf"
           mkdir -p ./build/Sources/AswProtobuf
           ls
