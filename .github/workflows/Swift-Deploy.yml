@@ -25,12 +25,6 @@ jobs:
         with:
           version: '3.x'
           
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v2
-        with:
-          ref: "release-v1-swift"
-          clean: false
-          
       - name: Run a one-line script
         run: |
           cp -R ./protos/v1 ./scripts
@@ -46,19 +40,25 @@ jobs:
           	protoc --swift_out=$DIR --grpc-swift_out=$DIR -I . "$file"
           	echo "WORK : [$file]"
           done
-          
+      
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: "release-v1-swift"
+          clean: false
+    
       - name: Add & Commit
         uses: EndBug/add-and-commit@v4.4.0
         with:
           add: 'build'
           ref: "release-v1-swift"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GIT_TOKEN }}
           branch: "release-v1-swift"
           force: true
           
