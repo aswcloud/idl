@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/aswcloud/gen/go/v1";
+
+import "base.proto";
+
+service Token {
+    rpc CreateRefreshToken(UserLoginMessage) returns (RefreshToken);
+    
+    // Header Check! Token!
+    rpc UpdatehRefreshToken(Uuid) returns (RefreshToken);
+    rpc DeleteRefreshToken(Uuid) returns (LoginTokenMessage);
+    rpc MakeAccessToken(Uuid) returns (AccessToken);
+}
+
+message LoginTokenMessage { 
+    bool result = 1;
+    optional string message = 2;
+}
+
+message UserLoginMessage { 
+    string user_id = 1;
+    string user_password = 2;
+    repeated int32 role = 3;
+}
+
+message RefreshToken { 
+    Uuid uuid = 1;
+    optional string token = 2;
+}
+
+message AccessToken {
+    Uuid uuid = 1;
+    string token = 2; 
+    // int32 user_id = 1;
+    // int32 token_id = 2;
+    // int64 iat = 3;
+    // int64 exp = 4;
+    // repeated int32 role = 5;
+}
