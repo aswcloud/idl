@@ -55,15 +55,15 @@ jobs:
           find . -name "*.go" -delete
           pwd
           ls
-          cp -f ../test/* ../idl/
+          cp -f ../test/* .
     
       - name: Add & Commit
         uses: EndBug/add-and-commit@v4.4.0
         with:
-          add: 'Sources/AswProtobuf'
-          ref: "release-v1-swift"
-          author_name: 'github-action [BOT]'
-          author_email: 'aoikazto@naver.com'
+          add: '.'
+          ref: "release-v1-go"
+#          author_name: 'github-action [BOT]'
+#          author_email: 'aoikazto@naver.com'
           
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
@@ -72,6 +72,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GIT_TOKEN }}
-          branch: "release-v1-swift"
+          branch: "release-v1-go"
           force: true
           
