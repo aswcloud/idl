@@ -1,7 +1,6 @@
 
 #!/bin/bash
 
-cd ..
 DIR="./gen/swift/v1"
 
 if [ ! -d "$DIR" ]; then  
@@ -27,5 +26,12 @@ else
     echo "install : swift-protobuf"
 fi
 
-protoc --swift_out=$DIR --grpc-swift_out=$DIR -I ./protos/v1 idl.proto
+
+for file in "./protos/v1"/*
+do
+	protoc --swift_out=$DIR --grpc-swift_out=$DIR -I ./protos/v1 "$file"
+	echo "WORK : [$file]"
+done
+
 echo "build : swift protobuf, [$DIR]"
+
