@@ -30,8 +30,8 @@ jobs:
           cp -R ./protos/v1/* ./scripts
           wget https://github.com/grpc/grpc-swift/releases/download/1.6.1/protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip
           sudo unzip ./protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip -d /usr/bin
-          DIR="./build/Sources/AswProtobuf"
-          mkdir -p ./build/Sources/AswProtobuf
+          DIR="./Sources/AswProtobuf"
+          mkdir -p ./Sources/AswProtobuf
           ls
           pwd
           for file in "./scripts/"*.proto
@@ -49,7 +49,7 @@ jobs:
       - name: Add & Commit
         uses: EndBug/add-and-commit@v4.4.0
         with:
-          add: 'build'
+          add: 'Sources/AswProtobuf'
           ref: "release-v1-swift"
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
