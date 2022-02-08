@@ -1,7 +1,7 @@
 
 #!/bin/bash
 
-DIR="./gen/swift/v1"
+DIR="./gen/swift/v1/AswProtobuf/Sources/AswProtobuf"
 
 if [ ! -d "$DIR" ]; then  
     mkdir -p ./gen/swift/v1
