@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserAccountClient interface {
-	CreateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Result, error)
+	CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*Result, error)
 	ReadUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*UserDetail, error)
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Result, error)
 	DeleteUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
@@ -32,7 +32,7 @@ func NewUserAccountClient(cc grpc.ClientConnInterface) UserAccountClient {
 	return &userAccountClient{cc}
 }
 
-func (c *userAccountClient) CreateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Result, error) {
+func (c *userAccountClient) CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
 	err := c.cc.Invoke(ctx, "/v1.UserAccount/CreateUser", in, out, opts...)
 	if err != nil {
@@ -72,7 +72,7 @@ func (c *userAccountClient) DeleteUser(ctx context.Context, in *Uuid, opts ...gr
 // All implementations must embed UnimplementedUserAccountServer
 // for forward compatibility
 type UserAccountServer interface {
-	CreateUser(context.Context, *User) (*Result, error)
+	CreateUser(context.Context, *MakeUser) (*Result, error)
 	ReadUser(context.Context, *Uuid) (*UserDetail, error)
 	UpdateUser(context.Context, *User) (*Result, error)
 	DeleteUser(context.Context, *Uuid) (*Result, error)
@@ -83,7 +83,7 @@ type UserAccountServer interface {
 type UnimplementedUserAccountServer struct {
 }
 
-func (UnimplementedUserAccountServer) CreateUser(context.Context, *User) (*Result, error) {
+func (UnimplementedUserAccountServer) CreateUser(context.Context, *MakeUser) (*Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
 func (UnimplementedUserAccountServer) ReadUser(context.Context, *Uuid) (*UserDetail, error) {
@@ -109,7 +109,7 @@ func RegisterUserAccountServer(s grpc.ServiceRegistrar, srv UserAccountServer) {
 }
 
 func _UserAccount_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(User)
+	in := new(MakeUser)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -121,7 +121,7 @@ func _UserAccount_CreateUser_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/v1.UserAccount/CreateUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountServer).CreateUser(ctx, req.(*User))
+		return srv.(UserAccountServer).CreateUser(ctx, req.(*MakeUser))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -212,7 +212,7 @@ var UserAccount_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OrganizationAccountClient interface {
-	CreateOrganization(ctx context.Context, in *Organization, opts ...grpc.CallOption) (*Result, error)
+	CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*Result, error)
 	ReadOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error)
 	UpdateOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
 	DeleteOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
@@ -227,7 +227,7 @@ func NewOrganizationAccountClient(cc grpc.ClientConnInterface) OrganizationAccou
 	return &organizationAccountClient{cc}
 }
 
-func (c *organizationAccountClient) CreateOrganization(ctx context.Context, in *Organization, opts ...grpc.CallOption) (*Result, error) {
+func (c *organizationAccountClient) CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/CreateOrganization", in, out, opts...)
 	if err != nil {
@@ -276,7 +276,7 @@ func (c *organizationAccountClient) AppendUser(ctx context.Context, in *Uuid, op
 // All implementations must embed UnimplementedOrganizationAccountServer
 // for forward compatibility
 type OrganizationAccountServer interface {
-	CreateOrganization(context.Context, *Organization) (*Result, error)
+	CreateOrganization(context.Context, *MakeOrganization) (*Result, error)
 	ReadOrganization(context.Context, *Uuid) (*OrganizationDetail, error)
 	UpdateOrganization(context.Context, *Uuid) (*Result, error)
 	DeleteOrganization(context.Context, *Uuid) (*Result, error)
@@ -288,7 +288,7 @@ type OrganizationAccountServer interface {
 type UnimplementedOrganizationAccountServer struct {
 }
 
-func (UnimplementedOrganizationAccountServer) CreateOrganization(context.Context, *Organization) (*Result, error) {
+func (UnimplementedOrganizationAccountServer) CreateOrganization(context.Context, *MakeOrganization) (*Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
 func (UnimplementedOrganizationAccountServer) ReadOrganization(context.Context, *Uuid) (*OrganizationDetail, error) {
@@ -317,7 +317,7 @@ func RegisterOrganizationAccountServer(s grpc.ServiceRegistrar, srv Organization
 }
 
 func _OrganizationAccount_CreateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Organization)
+	in := new(MakeOrganization)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -329,7 +329,7 @@ func _OrganizationAccount_CreateOrganization_Handler(srv interface{}, ctx contex
 		FullMethod: "/v1.OrganizationAccount/CreateOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationAccountServer).CreateOrganization(ctx, req.(*Organization))
+		return srv.(OrganizationAccountServer).CreateOrganization(ctx, req.(*MakeOrganization))
 	}
 	return interceptor(ctx, in, info, handler)
 }
