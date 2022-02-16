@@ -8,18 +8,23 @@ import "base.proto";
 import "kubernetes.proto";
 
 service UserAccount {
-    rpc CreateUser(User) returns (Result);
+    rpc CreateUser(MakeUser) returns (Result);
     rpc ReadUser(Uuid) returns (UserDetail);
     rpc UpdateUser(User) returns (Result);
     rpc DeleteUser(Uuid) returns (Result);
 }
 
 service OrganizationAccount { 
-    rpc CreateOrganization(Organization) returns (Result);
+    rpc CreateOrganization(MakeOrganization) returns (Result);
     rpc ReadOrganization(Uuid) returns (OrganizationDetail);
     rpc UpdateOrganization(Uuid) returns (Result);
     rpc DeleteOrganization(Uuid) returns (Result);
     rpc AppendUser(Uuid) returns (OrganizationDetail);
+}
+
+message MakeUser { 
+    string token = 1;
+    User user = 2;
 }
 
 message User { 
@@ -39,6 +44,11 @@ message UserDetail {
     
     repeated Namespace kube_namespace = 5;
     repeated Organization user_oranization = 6;
+}
+
+message MakeOrganization { 
+    string token = 1;
+    Organization organization = 2;
 }
 
 message Organization { 
