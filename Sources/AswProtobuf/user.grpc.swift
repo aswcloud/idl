@@ -31,9 +31,9 @@ internal protocol V1_UserAccountClientProtocol: GRPCClient {
   var interceptors: V1_UserAccountClientInterceptorFactoryProtocol? { get }
 
   func createUser(
-    _ request: V1_User,
+    _ request: V1_MakeUser,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_User, V1_Result>
+  ) -> UnaryCall<V1_MakeUser, V1_Result>
 
   func readUser(
     _ request: V1_Uuid,
@@ -63,9 +63,9 @@ extension V1_UserAccountClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   internal func createUser(
-    _ request: V1_User,
+    _ request: V1_MakeUser,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_User, V1_Result> {
+  ) -> UnaryCall<V1_MakeUser, V1_Result> {
     return self.makeUnaryCall(
       path: "/v1.UserAccount/CreateUser",
       request: request,
@@ -132,7 +132,7 @@ extension V1_UserAccountClientProtocol {
 internal protocol V1_UserAccountClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'createUser'.
-  func makeCreateUserInterceptors() -> [ClientInterceptor<V1_User, V1_Result>]
+  func makeCreateUserInterceptors() -> [ClientInterceptor<V1_MakeUser, V1_Result>]
 
   /// - Returns: Interceptors to use when invoking 'readUser'.
   func makeReadUserInterceptors() -> [ClientInterceptor<V1_Uuid, V1_UserDetail>]
@@ -172,9 +172,9 @@ internal protocol V1_OrganizationAccountClientProtocol: GRPCClient {
   var interceptors: V1_OrganizationAccountClientInterceptorFactoryProtocol? { get }
 
   func createOrganization(
-    _ request: V1_Organization,
+    _ request: V1_MakeOrganization,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_Organization, V1_Result>
+  ) -> UnaryCall<V1_MakeOrganization, V1_Result>
 
   func readOrganization(
     _ request: V1_Uuid,
@@ -209,9 +209,9 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   internal func createOrganization(
-    _ request: V1_Organization,
+    _ request: V1_MakeOrganization,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_Organization, V1_Result> {
+  ) -> UnaryCall<V1_MakeOrganization, V1_Result> {
     return self.makeUnaryCall(
       path: "/v1.OrganizationAccount/CreateOrganization",
       request: request,
@@ -296,7 +296,7 @@ extension V1_OrganizationAccountClientProtocol {
 internal protocol V1_OrganizationAccountClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'createOrganization'.
-  func makeCreateOrganizationInterceptors() -> [ClientInterceptor<V1_Organization, V1_Result>]
+  func makeCreateOrganizationInterceptors() -> [ClientInterceptor<V1_MakeOrganization, V1_Result>]
 
   /// - Returns: Interceptors to use when invoking 'readOrganization'.
   func makeReadOrganizationInterceptors() -> [ClientInterceptor<V1_Uuid, V1_OrganizationDetail>]
@@ -337,7 +337,7 @@ internal final class V1_OrganizationAccountClient: V1_OrganizationAccountClientP
 internal protocol V1_UserAccountProvider: CallHandlerProvider {
   var interceptors: V1_UserAccountServerInterceptorFactoryProtocol? { get }
 
-  func createUser(request: V1_User, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
+  func createUser(request: V1_MakeUser, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
 
   func readUser(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_UserDetail>
 
@@ -359,7 +359,7 @@ extension V1_UserAccountProvider {
     case "CreateUser":
       return UnaryServerHandler(
         context: context,
-        requestDeserializer: ProtobufDeserializer<V1_User>(),
+        requestDeserializer: ProtobufDeserializer<V1_MakeUser>(),
         responseSerializer: ProtobufSerializer<V1_Result>(),
         interceptors: self.interceptors?.makeCreateUserInterceptors() ?? [],
         userFunction: self.createUser(request:context:)
@@ -402,7 +402,7 @@ internal protocol V1_UserAccountServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'createUser'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeCreateUserInterceptors() -> [ServerInterceptor<V1_User, V1_Result>]
+  func makeCreateUserInterceptors() -> [ServerInterceptor<V1_MakeUser, V1_Result>]
 
   /// - Returns: Interceptors to use when handling 'readUser'.
   ///   Defaults to calling `self.makeInterceptors()`.
@@ -420,7 +420,7 @@ internal protocol V1_UserAccountServerInterceptorFactoryProtocol {
 internal protocol V1_OrganizationAccountProvider: CallHandlerProvider {
   var interceptors: V1_OrganizationAccountServerInterceptorFactoryProtocol? { get }
 
-  func createOrganization(request: V1_Organization, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
+  func createOrganization(request: V1_MakeOrganization, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
 
   func readOrganization(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_OrganizationDetail>
 
@@ -444,7 +444,7 @@ extension V1_OrganizationAccountProvider {
     case "CreateOrganization":
       return UnaryServerHandler(
         context: context,
-        requestDeserializer: ProtobufDeserializer<V1_Organization>(),
+        requestDeserializer: ProtobufDeserializer<V1_MakeOrganization>(),
         responseSerializer: ProtobufSerializer<V1_Result>(),
         interceptors: self.interceptors?.makeCreateOrganizationInterceptors() ?? [],
         userFunction: self.createOrganization(request:context:)
@@ -496,7 +496,7 @@ internal protocol V1_OrganizationAccountServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'createOrganization'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeCreateOrganizationInterceptors() -> [ServerInterceptor<V1_Organization, V1_Result>]
+  func makeCreateOrganizationInterceptors() -> [ServerInterceptor<V1_MakeOrganization, V1_Result>]
 
   /// - Returns: Interceptors to use when handling 'readOrganization'.
   ///   Defaults to calling `self.makeInterceptors()`.
