@@ -64,6 +64,8 @@ struct V1_RefreshToken {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var result: Bool = false
+
   var uuid: V1_Uuid {
     get {return _uuid ?? V1_Uuid()}
     set {_uuid = newValue}
@@ -94,6 +96,8 @@ struct V1_AccessToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
+
+  var result: Bool = false
 
   var uuid: V1_Uuid {
     get {return _uuid ?? V1_Uuid()}
@@ -211,8 +215,9 @@ extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".RefreshToken"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uuid"),
-    2: .same(proto: "token"),
+    1: .same(proto: "result"),
+    2: .same(proto: "uuid"),
+    3: .same(proto: "token"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -221,8 +226,9 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self._token) }()
+      case 1: try { try decoder.decodeSingularBoolField(value: &self.result) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self._token) }()
       default: break
       }
     }
@@ -233,16 +239,20 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
+    if self.result != false {
+      try visitor.visitSingularBoolField(value: self.result, fieldNumber: 1)
+    }
     try { if let v = self._uuid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     } }()
     try { if let v = self._token {
-      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
+      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
     } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: V1_RefreshToken, rhs: V1_RefreshToken) -> Bool {
+    if lhs.result != rhs.result {return false}
     if lhs._uuid != rhs._uuid {return false}
     if lhs._token != rhs._token {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -253,8 +263,9 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".AccessToken"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "uuid"),
-    2: .same(proto: "token"),
+    1: .same(proto: "result"),
+    2: .same(proto: "uuid"),
+    3: .same(proto: "token"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -263,8 +274,9 @@ extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.token) }()
+      case 1: try { try decoder.decodeSingularBoolField(value: &self.result) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.token) }()
       default: break
       }
     }
@@ -275,16 +287,20 @@ extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
     // https://github.com/apple/swift-protobuf/issues/1182
+    if self.result != false {
+      try visitor.visitSingularBoolField(value: self.result, fieldNumber: 1)
+    }
     try { if let v = self._uuid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     } }()
     if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 2)
+      try visitor.visitSingularStringField(value: self.token, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: V1_AccessToken, rhs: V1_AccessToken) -> Bool {
+    if lhs.result != rhs.result {return false}
     if lhs._uuid != rhs._uuid {return false}
     if lhs.token != rhs.token {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
