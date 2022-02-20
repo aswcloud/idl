@@ -26,7 +26,7 @@ import SwiftProtobuf
 
 
 /// Usage: instantiate `V1_TokenClient`, then call methods of this protocol to make API calls.
-internal protocol V1_TokenClientProtocol: GRPCClient {
+public protocol V1_TokenClientProtocol: GRPCClient {
   var serviceName: String { get }
   var interceptors: V1_TokenClientInterceptorFactoryProtocol? { get }
 
@@ -52,7 +52,7 @@ internal protocol V1_TokenClientProtocol: GRPCClient {
 }
 
 extension V1_TokenClientProtocol {
-  internal var serviceName: String {
+  public var serviceName: String {
     return "v1.Token"
   }
 
@@ -62,7 +62,7 @@ extension V1_TokenClientProtocol {
   ///   - request: Request to send to CreateRefreshToken.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func createRefreshToken(
+  public func createRefreshToken(
     _ request: V1_UserLoginMessage,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_UserLoginMessage, V1_RefreshToken> {
@@ -80,7 +80,7 @@ extension V1_TokenClientProtocol {
   ///   - request: Request to send to UpdatehRefreshToken.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func updatehRefreshToken(
+  public func updatehRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_RefreshToken> {
@@ -98,7 +98,7 @@ extension V1_TokenClientProtocol {
   ///   - request: Request to send to DeleteRefreshToken.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func deleteRefreshToken(
+  public func deleteRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_LoginTokenMessage> {
@@ -116,7 +116,7 @@ extension V1_TokenClientProtocol {
   ///   - request: Request to send to MakeAccessToken.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func makeAccessToken(
+  public func makeAccessToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_AccessToken> {
@@ -129,7 +129,7 @@ extension V1_TokenClientProtocol {
   }
 }
 
-internal protocol V1_TokenClientInterceptorFactoryProtocol {
+public protocol V1_TokenClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'createRefreshToken'.
   func makeCreateRefreshTokenInterceptors() -> [ClientInterceptor<V1_UserLoginMessage, V1_RefreshToken>]
@@ -144,10 +144,10 @@ internal protocol V1_TokenClientInterceptorFactoryProtocol {
   func makeMakeAccessTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_AccessToken>]
 }
 
-internal final class V1_TokenClient: V1_TokenClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: V1_TokenClientInterceptorFactoryProtocol?
+public final class V1_TokenClient: V1_TokenClientProtocol {
+  public let channel: GRPCChannel
+  public var defaultCallOptions: CallOptions
+  public var interceptors: V1_TokenClientInterceptorFactoryProtocol?
 
   /// Creates a client for the v1.Token service.
   ///
@@ -155,7 +155,7 @@ internal final class V1_TokenClient: V1_TokenClientProtocol {
   ///   - channel: `GRPCChannel` to the service host.
   ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
   ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
+  public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
     interceptors: V1_TokenClientInterceptorFactoryProtocol? = nil
@@ -167,7 +167,7 @@ internal final class V1_TokenClient: V1_TokenClientProtocol {
 }
 
 /// To build a server, implement a class that conforms to this protocol.
-internal protocol V1_TokenProvider: CallHandlerProvider {
+public protocol V1_TokenProvider: CallHandlerProvider {
   var interceptors: V1_TokenServerInterceptorFactoryProtocol? { get }
 
   func createRefreshToken(request: V1_UserLoginMessage, context: StatusOnlyCallContext) -> EventLoopFuture<V1_RefreshToken>
@@ -181,11 +181,11 @@ internal protocol V1_TokenProvider: CallHandlerProvider {
 }
 
 extension V1_TokenProvider {
-  internal var serviceName: Substring { return "v1.Token" }
+  public var serviceName: Substring { return "v1.Token" }
 
   /// Determines, calls and returns the appropriate request handler, depending on the request's method.
   /// Returns nil for methods not handled by this service.
-  internal func handle(
+  public func handle(
     method name: Substring,
     context: CallHandlerContext
   ) -> GRPCServerHandlerProtocol? {
@@ -232,7 +232,7 @@ extension V1_TokenProvider {
   }
 }
 
-internal protocol V1_TokenServerInterceptorFactoryProtocol {
+public protocol V1_TokenServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'createRefreshToken'.
   ///   Defaults to calling `self.makeInterceptors()`.

@@ -26,7 +26,7 @@ import SwiftProtobuf
 
 
 /// Usage: instantiate `V1_UserAccountClient`, then call methods of this protocol to make API calls.
-internal protocol V1_UserAccountClientProtocol: GRPCClient {
+public protocol V1_UserAccountClientProtocol: GRPCClient {
   var serviceName: String { get }
   var interceptors: V1_UserAccountClientInterceptorFactoryProtocol? { get }
 
@@ -52,7 +52,7 @@ internal protocol V1_UserAccountClientProtocol: GRPCClient {
 }
 
 extension V1_UserAccountClientProtocol {
-  internal var serviceName: String {
+  public var serviceName: String {
     return "v1.UserAccount"
   }
 
@@ -62,7 +62,7 @@ extension V1_UserAccountClientProtocol {
   ///   - request: Request to send to CreateUser.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func createUser(
+  public func createUser(
     _ request: V1_MakeUser,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_MakeUser, V1_Result> {
@@ -80,7 +80,7 @@ extension V1_UserAccountClientProtocol {
   ///   - request: Request to send to ReadUser.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func readUser(
+  public func readUser(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_UserDetail> {
@@ -98,7 +98,7 @@ extension V1_UserAccountClientProtocol {
   ///   - request: Request to send to UpdateUser.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func updateUser(
+  public func updateUser(
     _ request: V1_User,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_User, V1_Result> {
@@ -116,7 +116,7 @@ extension V1_UserAccountClientProtocol {
   ///   - request: Request to send to DeleteUser.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func deleteUser(
+  public func deleteUser(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_Result> {
@@ -129,7 +129,7 @@ extension V1_UserAccountClientProtocol {
   }
 }
 
-internal protocol V1_UserAccountClientInterceptorFactoryProtocol {
+public protocol V1_UserAccountClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'createUser'.
   func makeCreateUserInterceptors() -> [ClientInterceptor<V1_MakeUser, V1_Result>]
@@ -144,10 +144,10 @@ internal protocol V1_UserAccountClientInterceptorFactoryProtocol {
   func makeDeleteUserInterceptors() -> [ClientInterceptor<V1_Uuid, V1_Result>]
 }
 
-internal final class V1_UserAccountClient: V1_UserAccountClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: V1_UserAccountClientInterceptorFactoryProtocol?
+public final class V1_UserAccountClient: V1_UserAccountClientProtocol {
+  public let channel: GRPCChannel
+  public var defaultCallOptions: CallOptions
+  public var interceptors: V1_UserAccountClientInterceptorFactoryProtocol?
 
   /// Creates a client for the v1.UserAccount service.
   ///
@@ -155,7 +155,7 @@ internal final class V1_UserAccountClient: V1_UserAccountClientProtocol {
   ///   - channel: `GRPCChannel` to the service host.
   ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
   ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
+  public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
     interceptors: V1_UserAccountClientInterceptorFactoryProtocol? = nil
@@ -167,7 +167,7 @@ internal final class V1_UserAccountClient: V1_UserAccountClientProtocol {
 }
 
 /// Usage: instantiate `V1_OrganizationAccountClient`, then call methods of this protocol to make API calls.
-internal protocol V1_OrganizationAccountClientProtocol: GRPCClient {
+public protocol V1_OrganizationAccountClientProtocol: GRPCClient {
   var serviceName: String { get }
   var interceptors: V1_OrganizationAccountClientInterceptorFactoryProtocol? { get }
 
@@ -198,7 +198,7 @@ internal protocol V1_OrganizationAccountClientProtocol: GRPCClient {
 }
 
 extension V1_OrganizationAccountClientProtocol {
-  internal var serviceName: String {
+  public var serviceName: String {
     return "v1.OrganizationAccount"
   }
 
@@ -208,7 +208,7 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - request: Request to send to CreateOrganization.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func createOrganization(
+  public func createOrganization(
     _ request: V1_MakeOrganization,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_MakeOrganization, V1_Result> {
@@ -226,7 +226,7 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - request: Request to send to ReadOrganization.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func readOrganization(
+  public func readOrganization(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_OrganizationDetail> {
@@ -244,7 +244,7 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - request: Request to send to UpdateOrganization.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func updateOrganization(
+  public func updateOrganization(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_Result> {
@@ -262,7 +262,7 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - request: Request to send to DeleteOrganization.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func deleteOrganization(
+  public func deleteOrganization(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_Result> {
@@ -280,7 +280,7 @@ extension V1_OrganizationAccountClientProtocol {
   ///   - request: Request to send to AppendUser.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func appendUser(
+  public func appendUser(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
   ) -> UnaryCall<V1_Uuid, V1_OrganizationDetail> {
@@ -293,7 +293,7 @@ extension V1_OrganizationAccountClientProtocol {
   }
 }
 
-internal protocol V1_OrganizationAccountClientInterceptorFactoryProtocol {
+public protocol V1_OrganizationAccountClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'createOrganization'.
   func makeCreateOrganizationInterceptors() -> [ClientInterceptor<V1_MakeOrganization, V1_Result>]
@@ -311,10 +311,10 @@ internal protocol V1_OrganizationAccountClientInterceptorFactoryProtocol {
   func makeAppendUserInterceptors() -> [ClientInterceptor<V1_Uuid, V1_OrganizationDetail>]
 }
 
-internal final class V1_OrganizationAccountClient: V1_OrganizationAccountClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: V1_OrganizationAccountClientInterceptorFactoryProtocol?
+public final class V1_OrganizationAccountClient: V1_OrganizationAccountClientProtocol {
+  public let channel: GRPCChannel
+  public var defaultCallOptions: CallOptions
+  public var interceptors: V1_OrganizationAccountClientInterceptorFactoryProtocol?
 
   /// Creates a client for the v1.OrganizationAccount service.
   ///
@@ -322,7 +322,7 @@ internal final class V1_OrganizationAccountClient: V1_OrganizationAccountClientP
   ///   - channel: `GRPCChannel` to the service host.
   ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
   ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
+  public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
     interceptors: V1_OrganizationAccountClientInterceptorFactoryProtocol? = nil
@@ -334,7 +334,7 @@ internal final class V1_OrganizationAccountClient: V1_OrganizationAccountClientP
 }
 
 /// To build a server, implement a class that conforms to this protocol.
-internal protocol V1_UserAccountProvider: CallHandlerProvider {
+public protocol V1_UserAccountProvider: CallHandlerProvider {
   var interceptors: V1_UserAccountServerInterceptorFactoryProtocol? { get }
 
   func createUser(request: V1_MakeUser, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
@@ -347,11 +347,11 @@ internal protocol V1_UserAccountProvider: CallHandlerProvider {
 }
 
 extension V1_UserAccountProvider {
-  internal var serviceName: Substring { return "v1.UserAccount" }
+  public var serviceName: Substring { return "v1.UserAccount" }
 
   /// Determines, calls and returns the appropriate request handler, depending on the request's method.
   /// Returns nil for methods not handled by this service.
-  internal func handle(
+  public func handle(
     method name: Substring,
     context: CallHandlerContext
   ) -> GRPCServerHandlerProtocol? {
@@ -398,7 +398,7 @@ extension V1_UserAccountProvider {
   }
 }
 
-internal protocol V1_UserAccountServerInterceptorFactoryProtocol {
+public protocol V1_UserAccountServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'createUser'.
   ///   Defaults to calling `self.makeInterceptors()`.
@@ -417,7 +417,7 @@ internal protocol V1_UserAccountServerInterceptorFactoryProtocol {
   func makeDeleteUserInterceptors() -> [ServerInterceptor<V1_Uuid, V1_Result>]
 }
 /// To build a server, implement a class that conforms to this protocol.
-internal protocol V1_OrganizationAccountProvider: CallHandlerProvider {
+public protocol V1_OrganizationAccountProvider: CallHandlerProvider {
   var interceptors: V1_OrganizationAccountServerInterceptorFactoryProtocol? { get }
 
   func createOrganization(request: V1_MakeOrganization, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
@@ -432,11 +432,11 @@ internal protocol V1_OrganizationAccountProvider: CallHandlerProvider {
 }
 
 extension V1_OrganizationAccountProvider {
-  internal var serviceName: Substring { return "v1.OrganizationAccount" }
+  public var serviceName: Substring { return "v1.OrganizationAccount" }
 
   /// Determines, calls and returns the appropriate request handler, depending on the request's method.
   /// Returns nil for methods not handled by this service.
-  internal func handle(
+  public func handle(
     method name: Substring,
     context: CallHandlerContext
   ) -> GRPCServerHandlerProtocol? {
@@ -492,7 +492,7 @@ extension V1_OrganizationAccountProvider {
   }
 }
 
-internal protocol V1_OrganizationAccountServerInterceptorFactoryProtocol {
+public protocol V1_OrganizationAccountServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'createOrganization'.
   ///   Defaults to calling `self.makeInterceptors()`.
