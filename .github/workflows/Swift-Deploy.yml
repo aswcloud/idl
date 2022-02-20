@@ -35,7 +35,7 @@ jobs:
           mkdir -p ./Sources/AswProtobuf_tmp
           for file in "./scripts/"*.proto
           do
-          	protoc --swift_out=$DIR --grpc-swift_out=$DIR -I ./scripts "$file"
+          	protoc --swift_opt=Visibility=Public --swift_out=$DIR --grpc-swift_out=$DIR -I ./scripts "$file"
           	echo "WORK : [$file]"
           done
       
