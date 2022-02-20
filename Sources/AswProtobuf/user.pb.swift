@@ -20,178 +20,178 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct V1_MakeUser {
+public struct V1_MakeUser {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var token: String = String()
+  public var token: String = String()
 
-  var user: V1_User {
+  public var user: V1_User {
     get {return _user ?? V1_User()}
     set {_user = newValue}
   }
   /// Returns true if `user` has been explicitly set.
-  var hasUser: Bool {return self._user != nil}
+  public var hasUser: Bool {return self._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  mutating func clearUser() {self._user = nil}
+  public mutating func clearUser() {self._user = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _user: V1_User? = nil
 }
 
-struct V1_User {
+public struct V1_User {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var userID: String = String()
+  public var userID: String = String()
 
   /// required encrypt
-  var userPassword: String = String()
+  public var userPassword: String = String()
 
-  var userNickname: String = String()
+  public var userNickname: String = String()
 
-  var userEmail: String {
+  public var userEmail: String {
     get {return _userEmail ?? String()}
     set {_userEmail = newValue}
   }
   /// Returns true if `userEmail` has been explicitly set.
-  var hasUserEmail: Bool {return self._userEmail != nil}
+  public var hasUserEmail: Bool {return self._userEmail != nil}
   /// Clears the value of `userEmail`. Subsequent reads from it will return its default value.
-  mutating func clearUserEmail() {self._userEmail = nil}
+  public mutating func clearUserEmail() {self._userEmail = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _userEmail: String? = nil
 }
 
-struct V1_UserDetail {
+public struct V1_UserDetail {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var id: String = String()
+  public var id: String = String()
 
-  var userID: String = String()
+  public var userID: String = String()
 
-  var userNickname: String = String()
+  public var userNickname: String = String()
 
-  var userEmail: String {
+  public var userEmail: String {
     get {return _userEmail ?? String()}
     set {_userEmail = newValue}
   }
   /// Returns true if `userEmail` has been explicitly set.
-  var hasUserEmail: Bool {return self._userEmail != nil}
+  public var hasUserEmail: Bool {return self._userEmail != nil}
   /// Clears the value of `userEmail`. Subsequent reads from it will return its default value.
-  mutating func clearUserEmail() {self._userEmail = nil}
+  public mutating func clearUserEmail() {self._userEmail = nil}
 
-  var kubeNamespace: [V1_Namespace] = []
+  public var kubeNamespace: [V1_Namespace] = []
 
-  var userOranization: [V1_Organization] = []
+  public var userOranization: [V1_Organization] = []
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _userEmail: String? = nil
 }
 
-struct V1_MakeOrganization {
+public struct V1_MakeOrganization {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var token: String = String()
+  public var token: String = String()
 
-  var organization: V1_Organization {
+  public var organization: V1_Organization {
     get {return _organization ?? V1_Organization()}
     set {_organization = newValue}
   }
   /// Returns true if `organization` has been explicitly set.
-  var hasOrganization: Bool {return self._organization != nil}
+  public var hasOrganization: Bool {return self._organization != nil}
   /// Clears the value of `organization`. Subsequent reads from it will return its default value.
-  mutating func clearOrganization() {self._organization = nil}
+  public mutating func clearOrganization() {self._organization = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _organization: V1_Organization? = nil
 }
 
-struct V1_Organization {
+public struct V1_Organization {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var id: V1_Uuid {
+  public var id: V1_Uuid {
     get {return _id ?? V1_Uuid()}
     set {_id = newValue}
   }
   /// Returns true if `id` has been explicitly set.
-  var hasID: Bool {return self._id != nil}
+  public var hasID: Bool {return self._id != nil}
   /// Clears the value of `id`. Subsequent reads from it will return its default value.
-  mutating func clearID() {self._id = nil}
+  public mutating func clearID() {self._id = nil}
 
   /// required encrypt
-  var userNickname: String = String()
+  public var userNickname: String = String()
 
-  var userEmail: String {
+  public var userEmail: String {
     get {return _userEmail ?? String()}
     set {_userEmail = newValue}
   }
   /// Returns true if `userEmail` has been explicitly set.
-  var hasUserEmail: Bool {return self._userEmail != nil}
+  public var hasUserEmail: Bool {return self._userEmail != nil}
   /// Clears the value of `userEmail`. Subsequent reads from it will return its default value.
-  mutating func clearUserEmail() {self._userEmail = nil}
+  public mutating func clearUserEmail() {self._userEmail = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _id: V1_Uuid? = nil
   fileprivate var _userEmail: String? = nil
 }
 
-struct V1_OrganizationDetail {
+public struct V1_OrganizationDetail {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var id: V1_Uuid {
+  public var id: V1_Uuid {
     get {return _id ?? V1_Uuid()}
     set {_id = newValue}
   }
   /// Returns true if `id` has been explicitly set.
-  var hasID: Bool {return self._id != nil}
+  public var hasID: Bool {return self._id != nil}
   /// Clears the value of `id`. Subsequent reads from it will return its default value.
-  mutating func clearID() {self._id = nil}
+  public mutating func clearID() {self._id = nil}
 
   /// required encrypt
-  var userNickname: String = String()
+  public var userNickname: String = String()
 
-  var userEmail: String {
+  public var userEmail: String {
     get {return _userEmail ?? String()}
     set {_userEmail = newValue}
   }
   /// Returns true if `userEmail` has been explicitly set.
-  var hasUserEmail: Bool {return self._userEmail != nil}
+  public var hasUserEmail: Bool {return self._userEmail != nil}
   /// Clears the value of `userEmail`. Subsequent reads from it will return its default value.
-  mutating func clearUserEmail() {self._userEmail = nil}
+  public mutating func clearUserEmail() {self._userEmail = nil}
 
-  var user: [V1_UserDetail] = []
+  public var user: [V1_UserDetail] = []
 
-  var kubeNamespace: [V1_Namespace] = []
+  public var kubeNamespace: [V1_Namespace] = []
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _id: V1_Uuid? = nil
   fileprivate var _userEmail: String? = nil
@@ -202,13 +202,13 @@ struct V1_OrganizationDetail {
 fileprivate let _protobuf_package = "v1"
 
 extension V1_MakeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".MakeUser"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".MakeUser"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
     2: .same(proto: "user"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -221,7 +221,7 @@ extension V1_MakeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -235,7 +235,7 @@ extension V1_MakeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_MakeUser, rhs: V1_MakeUser) -> Bool {
+  public static func ==(lhs: V1_MakeUser, rhs: V1_MakeUser) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs._user != rhs._user {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -244,15 +244,15 @@ extension V1_MakeUser: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementati
 }
 
 extension V1_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".User"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".User"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "user_id"),
     2: .standard(proto: "user_password"),
     3: .standard(proto: "user_nickname"),
     4: .standard(proto: "user_email"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -267,7 +267,7 @@ extension V1_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -287,7 +287,7 @@ extension V1_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_User, rhs: V1_User) -> Bool {
+  public static func ==(lhs: V1_User, rhs: V1_User) -> Bool {
     if lhs.userID != rhs.userID {return false}
     if lhs.userPassword != rhs.userPassword {return false}
     if lhs.userNickname != rhs.userNickname {return false}
@@ -298,8 +298,8 @@ extension V1_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBa
 }
 
 extension V1_UserDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".UserDetail"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".UserDetail"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "user_id"),
     3: .standard(proto: "user_nickname"),
@@ -308,7 +308,7 @@ extension V1_UserDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     6: .standard(proto: "user_oranization"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -325,7 +325,7 @@ extension V1_UserDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -351,7 +351,7 @@ extension V1_UserDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_UserDetail, rhs: V1_UserDetail) -> Bool {
+  public static func ==(lhs: V1_UserDetail, rhs: V1_UserDetail) -> Bool {
     if lhs.id != rhs.id {return false}
     if lhs.userID != rhs.userID {return false}
     if lhs.userNickname != rhs.userNickname {return false}
@@ -364,13 +364,13 @@ extension V1_UserDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
 }
 
 extension V1_MakeOrganization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".MakeOrganization"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".MakeOrganization"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "token"),
     2: .same(proto: "organization"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -383,7 +383,7 @@ extension V1_MakeOrganization: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -397,7 +397,7 @@ extension V1_MakeOrganization: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_MakeOrganization, rhs: V1_MakeOrganization) -> Bool {
+  public static func ==(lhs: V1_MakeOrganization, rhs: V1_MakeOrganization) -> Bool {
     if lhs.token != rhs.token {return false}
     if lhs._organization != rhs._organization {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -406,14 +406,14 @@ extension V1_MakeOrganization: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 }
 
 extension V1_Organization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".Organization"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".Organization"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "user_nickname"),
     3: .standard(proto: "user_email"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -427,7 +427,7 @@ extension V1_Organization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -444,7 +444,7 @@ extension V1_Organization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_Organization, rhs: V1_Organization) -> Bool {
+  public static func ==(lhs: V1_Organization, rhs: V1_Organization) -> Bool {
     if lhs._id != rhs._id {return false}
     if lhs.userNickname != rhs.userNickname {return false}
     if lhs._userEmail != rhs._userEmail {return false}
@@ -454,8 +454,8 @@ extension V1_Organization: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 }
 
 extension V1_OrganizationDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".OrganizationDetail"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".OrganizationDetail"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .standard(proto: "user_nickname"),
     3: .standard(proto: "user_email"),
@@ -463,7 +463,7 @@ extension V1_OrganizationDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     5: .standard(proto: "kube_namespace"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -479,7 +479,7 @@ extension V1_OrganizationDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -502,7 +502,7 @@ extension V1_OrganizationDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_OrganizationDetail, rhs: V1_OrganizationDetail) -> Bool {
+  public static func ==(lhs: V1_OrganizationDetail, rhs: V1_OrganizationDetail) -> Bool {
     if lhs._id != rhs._id {return false}
     if lhs.userNickname != rhs.userNickname {return false}
     if lhs._userEmail != rhs._userEmail {return false}

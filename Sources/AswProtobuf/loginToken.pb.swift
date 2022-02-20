@@ -20,104 +20,104 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-struct V1_LoginTokenMessage {
+public struct V1_LoginTokenMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var result: Bool = false
+  public var result: Bool = false
 
-  var message: String {
+  public var message: String {
     get {return _message ?? String()}
     set {_message = newValue}
   }
   /// Returns true if `message` has been explicitly set.
-  var hasMessage: Bool {return self._message != nil}
+  public var hasMessage: Bool {return self._message != nil}
   /// Clears the value of `message`. Subsequent reads from it will return its default value.
-  mutating func clearMessage() {self._message = nil}
+  public mutating func clearMessage() {self._message = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _message: String? = nil
 }
 
-struct V1_UserLoginMessage {
+public struct V1_UserLoginMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var userID: String = String()
+  public var userID: String = String()
 
-  var userPassword: String = String()
+  public var userPassword: String = String()
 
-  var role: [Int32] = []
+  public var role: [Int32] = []
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 }
 
-struct V1_RefreshToken {
+public struct V1_RefreshToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var result: Bool = false
+  public var result: Bool = false
 
-  var uuid: V1_Uuid {
+  public var uuid: V1_Uuid {
     get {return _uuid ?? V1_Uuid()}
     set {_uuid = newValue}
   }
   /// Returns true if `uuid` has been explicitly set.
-  var hasUuid: Bool {return self._uuid != nil}
+  public var hasUuid: Bool {return self._uuid != nil}
   /// Clears the value of `uuid`. Subsequent reads from it will return its default value.
-  mutating func clearUuid() {self._uuid = nil}
+  public mutating func clearUuid() {self._uuid = nil}
 
-  var token: String {
+  public var token: String {
     get {return _token ?? String()}
     set {_token = newValue}
   }
   /// Returns true if `token` has been explicitly set.
-  var hasToken: Bool {return self._token != nil}
+  public var hasToken: Bool {return self._token != nil}
   /// Clears the value of `token`. Subsequent reads from it will return its default value.
-  mutating func clearToken() {self._token = nil}
+  public mutating func clearToken() {self._token = nil}
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _uuid: V1_Uuid? = nil
   fileprivate var _token: String? = nil
 }
 
-struct V1_AccessToken {
+public struct V1_AccessToken {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var result: Bool = false
+  public var result: Bool = false
 
-  var uuid: V1_Uuid {
+  public var uuid: V1_Uuid {
     get {return _uuid ?? V1_Uuid()}
     set {_uuid = newValue}
   }
   /// Returns true if `uuid` has been explicitly set.
-  var hasUuid: Bool {return self._uuid != nil}
+  public var hasUuid: Bool {return self._uuid != nil}
   /// Clears the value of `uuid`. Subsequent reads from it will return its default value.
-  mutating func clearUuid() {self._uuid = nil}
+  public mutating func clearUuid() {self._uuid = nil}
 
   /// int32 user_id = 1;
   /// int32 token_id = 2;
   /// int64 iat = 3;
   /// int64 exp = 4;
   /// repeated int32 role = 5;
-  var token: String = String()
+  public var token: String = String()
 
-  var unknownFields = SwiftProtobuf.UnknownStorage()
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  init() {}
+  public init() {}
 
   fileprivate var _uuid: V1_Uuid? = nil
 }
@@ -127,13 +127,13 @@ struct V1_AccessToken {
 fileprivate let _protobuf_package = "v1"
 
 extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".LoginTokenMessage"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".LoginTokenMessage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "result"),
     2: .same(proto: "message"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -146,7 +146,7 @@ extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -160,7 +160,7 @@ extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_LoginTokenMessage, rhs: V1_LoginTokenMessage) -> Bool {
+  public static func ==(lhs: V1_LoginTokenMessage, rhs: V1_LoginTokenMessage) -> Bool {
     if lhs.result != rhs.result {return false}
     if lhs._message != rhs._message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -169,14 +169,14 @@ extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 }
 
 extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".UserLoginMessage"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".UserLoginMessage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "user_id"),
     2: .standard(proto: "user_password"),
     3: .same(proto: "role"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -190,7 +190,7 @@ extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     if !self.userID.isEmpty {
       try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
     }
@@ -203,7 +203,7 @@ extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_UserLoginMessage, rhs: V1_UserLoginMessage) -> Bool {
+  public static func ==(lhs: V1_UserLoginMessage, rhs: V1_UserLoginMessage) -> Bool {
     if lhs.userID != rhs.userID {return false}
     if lhs.userPassword != rhs.userPassword {return false}
     if lhs.role != rhs.role {return false}
@@ -213,14 +213,14 @@ extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 }
 
 extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".RefreshToken"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".RefreshToken"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "result"),
     2: .same(proto: "uuid"),
     3: .same(proto: "token"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -234,7 +234,7 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -251,7 +251,7 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_RefreshToken, rhs: V1_RefreshToken) -> Bool {
+  public static func ==(lhs: V1_RefreshToken, rhs: V1_RefreshToken) -> Bool {
     if lhs.result != rhs.result {return false}
     if lhs._uuid != rhs._uuid {return false}
     if lhs._token != rhs._token {return false}
@@ -261,14 +261,14 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 }
 
 extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".AccessToken"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+  public static let protoMessageName: String = _protobuf_package + ".AccessToken"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "result"),
     2: .same(proto: "uuid"),
     3: .same(proto: "token"),
   ]
 
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       // The use of inline closures is to circumvent an issue where the compiler
       // allocates stack space for every case branch when no optimizations are
@@ -282,7 +282,7 @@ extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     }
   }
 
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
     // The use of inline closures is to circumvent an issue where the compiler
     // allocates stack space for every if/case branch local when no optimizations
     // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
@@ -299,7 +299,7 @@ extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: V1_AccessToken, rhs: V1_AccessToken) -> Bool {
+  public static func ==(lhs: V1_AccessToken, rhs: V1_AccessToken) -> Bool {
     if lhs.result != rhs.result {return false}
     if lhs._uuid != rhs._uuid {return false}
     if lhs.token != rhs.token {return false}
