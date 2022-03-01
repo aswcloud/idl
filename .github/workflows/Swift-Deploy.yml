@@ -58,7 +58,6 @@ jobs:
           ref: "release-v1-swift"
           author_name: 'Piorosen-Bot'
           author_email: 'ckwngud1@gmail.com'
-          
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
           
