@@ -60,10 +60,10 @@ jobs:
 #          author_email: 'aoikazto@naver.com'
           
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
           
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GIT_TOKEN }}
+          github_token: ${{ secrets.BOT_KOEN }}
           branch: "release-v1-swift"
