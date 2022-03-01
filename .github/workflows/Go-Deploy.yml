@@ -66,18 +66,18 @@ jobs:
 #          author_email: 'aoikazto@naver.com'
           
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
     
     # BOT TOKEN인뎅..?
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.BOT_KOEN }}
+          github_token: ${{ secrets.GIT_TOKEN }}
           branch: "release-v1-go"
           
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           WITH_V: true
           RELEASE_BRANCHES: "release-v1-go"
