@@ -23,7 +23,7 @@ message Deployment {
 }
 
 message Service { 
-
+    string type = 0;
 } 
 
 message Role { 
