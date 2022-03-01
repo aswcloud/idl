@@ -64,6 +64,7 @@ jobs:
           ref: "release-v1-go"
           author_name: 'Piorosen-Bot'
           author_email: 'ckwngud1@gmail.com'
+          message: ${{ github.event.head_commit.message }}
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     
