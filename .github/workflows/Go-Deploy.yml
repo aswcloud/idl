@@ -62,22 +62,21 @@ jobs:
         with:
           add: '.'
           ref: "release-v1-go"
-#          author_name: 'github-action [BOT]'
-#          author_email: 'aoikazto@naver.com'
-          
+          author_name: 'Piorosen-Bot'
+          author_email: 'ckwngud1@gmail.com'
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
     
     # BOT TOKEN인뎅..?
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GIT_TOKEN }}
+          github_token: ${{ secrets.BOT_KOEN }}
           branch: "release-v1-go"
           
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.36.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
           WITH_V: true
           RELEASE_BRANCHES: "release-v1-go"

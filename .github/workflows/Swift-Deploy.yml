@@ -56,14 +56,14 @@ jobs:
         with:
           add: 'Sources/AswProtobuf'
           ref: "release-v1-swift"
-#          author_name: 'github-action [BOT]'
-#          author_email: 'aoikazto@naver.com'
+          author_name: 'Piorosen-Bot'
+          author_email: 'ckwngud1@gmail.com'
           
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_KOEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
           
       - name: Push commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.BOT_KOEN }}
+          github_token: ${{ secrets.BOT_TOKEN }}
           branch: "release-v1-swift"
