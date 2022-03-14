@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/aswcloud/gen/go/v1";
+
+import "base.proto";
+
+service Namespace { 
+    rpc CreateNamespace(Void) returns (Void);
+    rpc ReadNamespace(Void) returns (Void);
+    rpc UpdateNamespace(Void) returns (Void);
+    rpc DeleteNamespace(Void) returns (Void);
+}
+service Service { 
+    rpc CreateService(Void) returns (Void);
+    rpc ReadService(Void) returns (Void);
+    rpc UpdateService(Void) returns (Void);
+    rpc DeleteService(Void) returns (Void);
+}
+service Deployment { 
+    rpc CreateDeployment(Void) returns (Void);
+    rpc ReadDeployment(Void) returns (Void);
+    rpc UpdateDeployment(Void) returns (Void);
+    rpc DeleteDeployment(Void) returns (Void);
+    
+    rpc CreatePersistentVolumeClaim(Void) returns (Void);
+    rpc ReadPersistentVolumeClaim(Void) returns (Void);
+    rpc UpdatePersistentVolumeClaim(Void) returns (Void);
+    rpc DeletePersistentVolumeClaim(Void) returns (Void);
+}
+service PersistentVolumeClaim { 
+    
+}
+
+message MakeUser { 
+    string token = 1;
+    User user = 2;
+}
