@@ -10,9 +10,9 @@ message Uuid {
     string uuid = 1;
 }
 
-message keyvalue { 
-    string key = 0;
-    string value = 1;
+message key_value { 
+    string key = 1;
+    string value = 2;
 }
 
 
