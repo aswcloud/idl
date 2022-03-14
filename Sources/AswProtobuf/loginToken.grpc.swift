@@ -30,30 +30,58 @@ public protocol V1_TokenClientProtocol: GRPCClient {
   var serviceName: String { get }
   var interceptors: V1_TokenClientInterceptorFactoryProtocol? { get }
 
-  func createRefreshToken(
-    _ request: V1_UserLoginMessage,
+  func createRegisterToken(
+    _ request: V1_Void,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_UserLoginMessage, V1_RefreshToken>
+  ) -> UnaryCall<V1_Void, V1_TokenMessage>
+
+  func createRefreshToken(
+    _ request: V1_CreateRefreshTokenMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<V1_CreateRefreshTokenMessage, V1_TokenMessage>
+
+  func readRefreshToken(
+    _ request: V1_Void,
+    callOptions: CallOptions?
+  ) -> UnaryCall<V1_Void, V1_RefreshTokenList>
 
   func updatehRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_Uuid, V1_RefreshToken>
+  ) -> UnaryCall<V1_Uuid, V1_TokenMessage>
 
   func deleteRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_Uuid, V1_LoginTokenMessage>
+  ) -> UnaryCall<V1_Uuid, V1_DeleteRefreshTokenMessage>
 
-  func makeAccessToken(
+  func createAccessToken(
     _ request: V1_Uuid,
     callOptions: CallOptions?
-  ) -> UnaryCall<V1_Uuid, V1_AccessToken>
+  ) -> UnaryCall<V1_Uuid, V1_TokenMessage>
 }
 
 extension V1_TokenClientProtocol {
   public var serviceName: String {
     return "v1.Token"
+  }
+
+  /// Unary call to CreateRegisterToken
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to CreateRegisterToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func createRegisterToken(
+    _ request: V1_Void,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<V1_Void, V1_TokenMessage> {
+    return self.makeUnaryCall(
+      path: "/v1.Token/CreateRegisterToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeCreateRegisterTokenInterceptors() ?? []
+    )
   }
 
   /// Unary call to CreateRefreshToken
@@ -63,9 +91,9 @@ extension V1_TokenClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   public func createRefreshToken(
-    _ request: V1_UserLoginMessage,
+    _ request: V1_CreateRefreshTokenMessage,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_UserLoginMessage, V1_RefreshToken> {
+  ) -> UnaryCall<V1_CreateRefreshTokenMessage, V1_TokenMessage> {
     return self.makeUnaryCall(
       path: "/v1.Token/CreateRefreshToken",
       request: request,
@@ -74,7 +102,26 @@ extension V1_TokenClientProtocol {
     )
   }
 
-  /// Header Check! Token!
+  /// Needs, Authorization
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to ReadRefreshToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  public func readRefreshToken(
+    _ request: V1_Void,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<V1_Void, V1_RefreshTokenList> {
+    return self.makeUnaryCall(
+      path: "/v1.Token/ReadRefreshToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeReadRefreshTokenInterceptors() ?? []
+    )
+  }
+
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
   ///
   /// - Parameters:
   ///   - request: Request to send to UpdatehRefreshToken.
@@ -83,7 +130,7 @@ extension V1_TokenClientProtocol {
   public func updatehRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_Uuid, V1_RefreshToken> {
+  ) -> UnaryCall<V1_Uuid, V1_TokenMessage> {
     return self.makeUnaryCall(
       path: "/v1.Token/UpdatehRefreshToken",
       request: request,
@@ -92,7 +139,8 @@ extension V1_TokenClientProtocol {
     )
   }
 
-  /// Unary call to DeleteRefreshToken
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
   ///
   /// - Parameters:
   ///   - request: Request to send to DeleteRefreshToken.
@@ -101,7 +149,7 @@ extension V1_TokenClientProtocol {
   public func deleteRefreshToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_Uuid, V1_LoginTokenMessage> {
+  ) -> UnaryCall<V1_Uuid, V1_DeleteRefreshTokenMessage> {
     return self.makeUnaryCall(
       path: "/v1.Token/DeleteRefreshToken",
       request: request,
@@ -110,38 +158,45 @@ extension V1_TokenClientProtocol {
     )
   }
 
-  /// Unary call to MakeAccessToken
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
   ///
   /// - Parameters:
-  ///   - request: Request to send to MakeAccessToken.
+  ///   - request: Request to send to CreateAccessToken.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func makeAccessToken(
+  public func createAccessToken(
     _ request: V1_Uuid,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_Uuid, V1_AccessToken> {
+  ) -> UnaryCall<V1_Uuid, V1_TokenMessage> {
     return self.makeUnaryCall(
-      path: "/v1.Token/MakeAccessToken",
+      path: "/v1.Token/CreateAccessToken",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeMakeAccessTokenInterceptors() ?? []
+      interceptors: self.interceptors?.makeCreateAccessTokenInterceptors() ?? []
     )
   }
 }
 
 public protocol V1_TokenClientInterceptorFactoryProtocol {
 
+  /// - Returns: Interceptors to use when invoking 'createRegisterToken'.
+  func makeCreateRegisterTokenInterceptors() -> [ClientInterceptor<V1_Void, V1_TokenMessage>]
+
   /// - Returns: Interceptors to use when invoking 'createRefreshToken'.
-  func makeCreateRefreshTokenInterceptors() -> [ClientInterceptor<V1_UserLoginMessage, V1_RefreshToken>]
+  func makeCreateRefreshTokenInterceptors() -> [ClientInterceptor<V1_CreateRefreshTokenMessage, V1_TokenMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'readRefreshToken'.
+  func makeReadRefreshTokenInterceptors() -> [ClientInterceptor<V1_Void, V1_RefreshTokenList>]
 
   /// - Returns: Interceptors to use when invoking 'updatehRefreshToken'.
-  func makeUpdatehRefreshTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_RefreshToken>]
+  func makeUpdatehRefreshTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_TokenMessage>]
 
   /// - Returns: Interceptors to use when invoking 'deleteRefreshToken'.
-  func makeDeleteRefreshTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_LoginTokenMessage>]
+  func makeDeleteRefreshTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_DeleteRefreshTokenMessage>]
 
-  /// - Returns: Interceptors to use when invoking 'makeAccessToken'.
-  func makeMakeAccessTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_AccessToken>]
+  /// - Returns: Interceptors to use when invoking 'createAccessToken'.
+  func makeCreateAccessTokenInterceptors() -> [ClientInterceptor<V1_Uuid, V1_TokenMessage>]
 }
 
 public final class V1_TokenClient: V1_TokenClientProtocol {
@@ -170,14 +225,24 @@ public final class V1_TokenClient: V1_TokenClientProtocol {
 public protocol V1_TokenProvider: CallHandlerProvider {
   var interceptors: V1_TokenServerInterceptorFactoryProtocol? { get }
 
-  func createRefreshToken(request: V1_UserLoginMessage, context: StatusOnlyCallContext) -> EventLoopFuture<V1_RefreshToken>
+  func createRegisterToken(request: V1_Void, context: StatusOnlyCallContext) -> EventLoopFuture<V1_TokenMessage>
 
-  /// Header Check! Token!
-  func updatehRefreshToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_RefreshToken>
+  func createRefreshToken(request: V1_CreateRefreshTokenMessage, context: StatusOnlyCallContext) -> EventLoopFuture<V1_TokenMessage>
 
-  func deleteRefreshToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_LoginTokenMessage>
+  /// Needs, Authorization
+  func readRefreshToken(request: V1_Void, context: StatusOnlyCallContext) -> EventLoopFuture<V1_RefreshTokenList>
 
-  func makeAccessToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_AccessToken>
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
+  func updatehRefreshToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_TokenMessage>
+
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
+  func deleteRefreshToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_DeleteRefreshTokenMessage>
+
+  /// Needs, Authorization
+  /// Uuid : Refreshtoken Uuid
+  func createAccessToken(request: V1_Uuid, context: StatusOnlyCallContext) -> EventLoopFuture<V1_TokenMessage>
 }
 
 extension V1_TokenProvider {
@@ -190,20 +255,38 @@ extension V1_TokenProvider {
     context: CallHandlerContext
   ) -> GRPCServerHandlerProtocol? {
     switch name {
+    case "CreateRegisterToken":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<V1_Void>(),
+        responseSerializer: ProtobufSerializer<V1_TokenMessage>(),
+        interceptors: self.interceptors?.makeCreateRegisterTokenInterceptors() ?? [],
+        userFunction: self.createRegisterToken(request:context:)
+      )
+
     case "CreateRefreshToken":
       return UnaryServerHandler(
         context: context,
-        requestDeserializer: ProtobufDeserializer<V1_UserLoginMessage>(),
-        responseSerializer: ProtobufSerializer<V1_RefreshToken>(),
+        requestDeserializer: ProtobufDeserializer<V1_CreateRefreshTokenMessage>(),
+        responseSerializer: ProtobufSerializer<V1_TokenMessage>(),
         interceptors: self.interceptors?.makeCreateRefreshTokenInterceptors() ?? [],
         userFunction: self.createRefreshToken(request:context:)
+      )
+
+    case "ReadRefreshToken":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<V1_Void>(),
+        responseSerializer: ProtobufSerializer<V1_RefreshTokenList>(),
+        interceptors: self.interceptors?.makeReadRefreshTokenInterceptors() ?? [],
+        userFunction: self.readRefreshToken(request:context:)
       )
 
     case "UpdatehRefreshToken":
       return UnaryServerHandler(
         context: context,
         requestDeserializer: ProtobufDeserializer<V1_Uuid>(),
-        responseSerializer: ProtobufSerializer<V1_RefreshToken>(),
+        responseSerializer: ProtobufSerializer<V1_TokenMessage>(),
         interceptors: self.interceptors?.makeUpdatehRefreshTokenInterceptors() ?? [],
         userFunction: self.updatehRefreshToken(request:context:)
       )
@@ -212,18 +295,18 @@ extension V1_TokenProvider {
       return UnaryServerHandler(
         context: context,
         requestDeserializer: ProtobufDeserializer<V1_Uuid>(),
-        responseSerializer: ProtobufSerializer<V1_LoginTokenMessage>(),
+        responseSerializer: ProtobufSerializer<V1_DeleteRefreshTokenMessage>(),
         interceptors: self.interceptors?.makeDeleteRefreshTokenInterceptors() ?? [],
         userFunction: self.deleteRefreshToken(request:context:)
       )
 
-    case "MakeAccessToken":
+    case "CreateAccessToken":
       return UnaryServerHandler(
         context: context,
         requestDeserializer: ProtobufDeserializer<V1_Uuid>(),
-        responseSerializer: ProtobufSerializer<V1_AccessToken>(),
-        interceptors: self.interceptors?.makeMakeAccessTokenInterceptors() ?? [],
-        userFunction: self.makeAccessToken(request:context:)
+        responseSerializer: ProtobufSerializer<V1_TokenMessage>(),
+        interceptors: self.interceptors?.makeCreateAccessTokenInterceptors() ?? [],
+        userFunction: self.createAccessToken(request:context:)
       )
 
     default:
@@ -234,19 +317,27 @@ extension V1_TokenProvider {
 
 public protocol V1_TokenServerInterceptorFactoryProtocol {
 
+  /// - Returns: Interceptors to use when handling 'createRegisterToken'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeCreateRegisterTokenInterceptors() -> [ServerInterceptor<V1_Void, V1_TokenMessage>]
+
   /// - Returns: Interceptors to use when handling 'createRefreshToken'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeCreateRefreshTokenInterceptors() -> [ServerInterceptor<V1_UserLoginMessage, V1_RefreshToken>]
+  func makeCreateRefreshTokenInterceptors() -> [ServerInterceptor<V1_CreateRefreshTokenMessage, V1_TokenMessage>]
+
+  /// - Returns: Interceptors to use when handling 'readRefreshToken'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeReadRefreshTokenInterceptors() -> [ServerInterceptor<V1_Void, V1_RefreshTokenList>]
 
   /// - Returns: Interceptors to use when handling 'updatehRefreshToken'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeUpdatehRefreshTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_RefreshToken>]
+  func makeUpdatehRefreshTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_TokenMessage>]
 
   /// - Returns: Interceptors to use when handling 'deleteRefreshToken'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeDeleteRefreshTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_LoginTokenMessage>]
+  func makeDeleteRefreshTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_DeleteRefreshTokenMessage>]
 
-  /// - Returns: Interceptors to use when handling 'makeAccessToken'.
+  /// - Returns: Interceptors to use when handling 'createAccessToken'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeMakeAccessTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_AccessToken>]
+  func makeCreateAccessTokenInterceptors() -> [ServerInterceptor<V1_Uuid, V1_TokenMessage>]
 }

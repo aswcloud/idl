@@ -20,7 +20,35 @@ fileprivate struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAP
   typealias Version = _2
 }
 
-public struct V1_LoginTokenMessage {
+public struct V1_RefreshTokenList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var result: Bool = false
+
+  public var refreshToken: [V1_TokenMessage] = []
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct V1_CreateRefreshTokenMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  public var userID: String = String()
+
+  public var userPassword: String = String()
+
+  public var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  public init() {}
+}
+
+public struct V1_DeleteRefreshTokenMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
@@ -43,37 +71,12 @@ public struct V1_LoginTokenMessage {
   fileprivate var _message: String? = nil
 }
 
-public struct V1_UserLoginMessage {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var userID: String = String()
-
-  public var userPassword: String = String()
-
-  public var role: [Int32] = []
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-}
-
-public struct V1_RefreshToken {
+public struct V1_TokenMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
   public var result: Bool = false
-
-  public var uuid: V1_Uuid {
-    get {return _uuid ?? V1_Uuid()}
-    set {_uuid = newValue}
-  }
-  /// Returns true if `uuid` has been explicitly set.
-  public var hasUuid: Bool {return self._uuid != nil}
-  /// Clears the value of `uuid`. Subsequent reads from it will return its default value.
-  public mutating func clearUuid() {self._uuid = nil}
 
   public var token: String {
     get {return _token ?? String()}
@@ -88,46 +91,91 @@ public struct V1_RefreshToken {
 
   public init() {}
 
-  fileprivate var _uuid: V1_Uuid? = nil
   fileprivate var _token: String? = nil
-}
-
-public struct V1_AccessToken {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  public var result: Bool = false
-
-  public var uuid: V1_Uuid {
-    get {return _uuid ?? V1_Uuid()}
-    set {_uuid = newValue}
-  }
-  /// Returns true if `uuid` has been explicitly set.
-  public var hasUuid: Bool {return self._uuid != nil}
-  /// Clears the value of `uuid`. Subsequent reads from it will return its default value.
-  public mutating func clearUuid() {self._uuid = nil}
-
-  /// int32 user_id = 1;
-  /// int32 token_id = 2;
-  /// int64 iat = 3;
-  /// int64 exp = 4;
-  /// repeated int32 role = 5;
-  public var token: String = String()
-
-  public var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  public init() {}
-
-  fileprivate var _uuid: V1_Uuid? = nil
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "v1"
 
-extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".LoginTokenMessage"
+extension V1_RefreshTokenList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".RefreshTokenList"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "result"),
+    2: .standard(proto: "refresh_token"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularBoolField(value: &self.result) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.refreshToken) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.result != false {
+      try visitor.visitSingularBoolField(value: self.result, fieldNumber: 1)
+    }
+    if !self.refreshToken.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.refreshToken, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: V1_RefreshTokenList, rhs: V1_RefreshTokenList) -> Bool {
+    if lhs.result != rhs.result {return false}
+    if lhs.refreshToken != rhs.refreshToken {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension V1_CreateRefreshTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".CreateRefreshTokenMessage"
+  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "user_id"),
+    2: .standard(proto: "user_password"),
+  ]
+
+  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.userID) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.userPassword) }()
+      default: break
+      }
+    }
+  }
+
+  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+    }
+    if !self.userPassword.isEmpty {
+      try visitor.visitSingularStringField(value: self.userPassword, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  public static func ==(lhs: V1_CreateRefreshTokenMessage, rhs: V1_CreateRefreshTokenMessage) -> Bool {
+    if lhs.userID != rhs.userID {return false}
+    if lhs.userPassword != rhs.userPassword {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension V1_DeleteRefreshTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".DeleteRefreshTokenMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "result"),
     2: .same(proto: "message"),
@@ -160,7 +208,7 @@ extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: V1_LoginTokenMessage, rhs: V1_LoginTokenMessage) -> Bool {
+  public static func ==(lhs: V1_DeleteRefreshTokenMessage, rhs: V1_DeleteRefreshTokenMessage) -> Bool {
     if lhs.result != rhs.result {return false}
     if lhs._message != rhs._message {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
@@ -168,56 +216,11 @@ extension V1_LoginTokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
   }
 }
 
-extension V1_UserLoginMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".UserLoginMessage"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_id"),
-    2: .standard(proto: "user_password"),
-    3: .same(proto: "role"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.userID) }()
-      case 2: try { try decoder.decodeSingularStringField(value: &self.userPassword) }()
-      case 3: try { try decoder.decodeRepeatedInt32Field(value: &self.role) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
-    }
-    if !self.userPassword.isEmpty {
-      try visitor.visitSingularStringField(value: self.userPassword, fieldNumber: 2)
-    }
-    if !self.role.isEmpty {
-      try visitor.visitPackedInt32Field(value: self.role, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: V1_UserLoginMessage, rhs: V1_UserLoginMessage) -> Bool {
-    if lhs.userID != rhs.userID {return false}
-    if lhs.userPassword != rhs.userPassword {return false}
-    if lhs.role != rhs.role {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".RefreshToken"
+extension V1_TokenMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  public static let protoMessageName: String = _protobuf_package + ".TokenMessage"
   public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "result"),
-    2: .same(proto: "uuid"),
-    3: .same(proto: "token"),
+    2: .same(proto: "token"),
   ]
 
   public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -227,8 +230,7 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularBoolField(value: &self.result) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
-      case 3: try { try decoder.decodeSingularStringField(value: &self._token) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self._token) }()
       default: break
       }
     }
@@ -242,67 +244,15 @@ extension V1_RefreshToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
     if self.result != false {
       try visitor.visitSingularBoolField(value: self.result, fieldNumber: 1)
     }
-    try { if let v = self._uuid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    } }()
     try { if let v = self._token {
-      try visitor.visitSingularStringField(value: v, fieldNumber: 3)
+      try visitor.visitSingularStringField(value: v, fieldNumber: 2)
     } }()
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  public static func ==(lhs: V1_RefreshToken, rhs: V1_RefreshToken) -> Bool {
+  public static func ==(lhs: V1_TokenMessage, rhs: V1_TokenMessage) -> Bool {
     if lhs.result != rhs.result {return false}
-    if lhs._uuid != rhs._uuid {return false}
     if lhs._token != rhs._token {return false}
-    if lhs.unknownFields != rhs.unknownFields {return false}
-    return true
-  }
-}
-
-extension V1_AccessToken: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  public static let protoMessageName: String = _protobuf_package + ".AccessToken"
-  public static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "result"),
-    2: .same(proto: "uuid"),
-    3: .same(proto: "token"),
-  ]
-
-  public mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularBoolField(value: &self.result) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._uuid) }()
-      case 3: try { try decoder.decodeSingularStringField(value: &self.token) }()
-      default: break
-      }
-    }
-  }
-
-  public func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    // The use of inline closures is to circumvent an issue where the compiler
-    // allocates stack space for every if/case branch local when no optimizations
-    // are enabled. https://github.com/apple/swift-protobuf/issues/1034 and
-    // https://github.com/apple/swift-protobuf/issues/1182
-    if self.result != false {
-      try visitor.visitSingularBoolField(value: self.result, fieldNumber: 1)
-    }
-    try { if let v = self._uuid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    } }()
-    if !self.token.isEmpty {
-      try visitor.visitSingularStringField(value: self.token, fieldNumber: 3)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  public static func ==(lhs: V1_AccessToken, rhs: V1_AccessToken) -> Bool {
-    if lhs.result != rhs.result {return false}
-    if lhs._uuid != rhs._uuid {return false}
-    if lhs.token != rhs.token {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
