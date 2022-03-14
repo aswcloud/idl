@@ -11,7 +11,7 @@ import "base.proto";
 service Token {
     rpc CreateRegisterToken(Void) returns (TokenMessage);
 
-    rpc CreateRefreshToken(CreateRefreshTokenMessage) returns (RefreshToken);
+    rpc CreateRefreshToken(CreateRefreshTokenMessage) returns (TokenMessage);
 
     // Needs, Authorization
     rpc ReadRefreshToken(Void) returns (RefreshTokenList);
