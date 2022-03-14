@@ -7,22 +7,22 @@ option go_package = "github.com/aswcloud/v1/kubernetes";
 import "namespace.proto";
 
 service Kubernetes { 
-    rpc CreateNamespace(string) returns (bool);
+    rpc CreateNamespace(name) returns (result);
     // rpc ReadNamespace(string) returns (Void);
-    rpc DeleteNamespace(string) returns (string);
+    rpc DeleteNamespace(name) returns (result);
 
     rpc CreateService(service) returns (service);
     // rpc ReadService(Void) returns (Void);
     // rpc UpdateService(Void) returns (Void);
-    rpc DeleteService(delete_service) returns (bool);
+    rpc DeleteService(delete_service) returns (result);
 
-    rpc CreateDeployment(deployment) returns (bool);
+    rpc CreateDeployment(deployment) returns (result);
     // rpc ReadDeployment(Void) returns (Void);
     // rpc UpdateDeployment(Void) returns (Void);
-    rpc DeleteDeployment(delete_deployment) returns (bool);
+    rpc DeleteDeployment(delete_deployment) returns (result);
     
-    rpc CreatePersistentVolumeClaim(pvc) returns (bool);
+    rpc CreatePersistentVolumeClaim(pvc) returns (result);
     // rpc ReadPersistentVolumeClaim(Void) returns (Void);
     // rpc UpdatePersistentVolumeClaim(Void) returns (Void);
-    rpc DeletePersistentVolumeClaim(delete_pvc) returns (bool);
+    rpc DeletePersistentVolumeClaim(delete_pvc) returns (result);
 }

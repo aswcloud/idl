@@ -16,8 +16,12 @@ message key_value {
 }
 
 
-message Result { 
+message result { 
     bool result = 1;
     optional string error = 2;
-    repeated string any = 3;
 }
+
+message name {
+    string name = 1;
+}
+
