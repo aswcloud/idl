@@ -29,7 +29,7 @@ service Token {
 
 message RefreshTokenList { 
     bool result = 1;
-    repeated RefreshToken = 2;
+    repeated refresh_token = 2;
 }
 message CreateRefreshTokenMessage { 
     string user_id = 1;

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package v1;
 
-option go_package = "github.com/aswcloud/gen/go/v1";
+option go_package = "github.com/aswcloud/kubernetes";
 
 import "base.proto";
 
@@ -31,9 +31,4 @@ service Deployment {
 }
 service PersistentVolumeClaim { 
     
-}
-
-message MakeUser { 
-    string token = 1;
-    User user = 2;
 }

@@ -19,7 +19,7 @@ message Namespace {
 }
 
 message Deployment { 
-    repeated Pod pod = 8;
+    repeated Pod pod = 1;
 }
 
 message Service { 
