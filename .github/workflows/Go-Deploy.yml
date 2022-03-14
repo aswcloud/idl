@@ -65,7 +65,7 @@ jobs:
           find . -name "*.go" -delete
           pwd
           ls
-          cp -f ../test/v1 .
+          cp -r -f ../test/v1 .
     
       - name: Add & Commit
         uses: EndBug/add-and-commit@v4.4.0
