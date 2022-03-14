@@ -4,6 +4,7 @@ package v1
 
 import (
 	context "context"
+	servercomm "github.com/aswcloud/servercomm"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -18,10 +19,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserAccountClient interface {
-	CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*Result, error)
-	ReadUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*UserDetail, error)
-	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Result, error)
-	DeleteUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
+	CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*servercomm.Result, error)
+	ReadUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*UserDetail, error)
+	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*servercomm.Result, error)
+	DeleteUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error)
 }
 
 type userAccountClient struct {
@@ -32,8 +33,8 @@ func NewUserAccountClient(cc grpc.ClientConnInterface) UserAccountClient {
 	return &userAccountClient{cc}
 }
 
-func (c *userAccountClient) CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *userAccountClient) CreateUser(ctx context.Context, in *MakeUser, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.UserAccount/CreateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -41,7 +42,7 @@ func (c *userAccountClient) CreateUser(ctx context.Context, in *MakeUser, opts .
 	return out, nil
 }
 
-func (c *userAccountClient) ReadUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*UserDetail, error) {
+func (c *userAccountClient) ReadUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*UserDetail, error) {
 	out := new(UserDetail)
 	err := c.cc.Invoke(ctx, "/v1.UserAccount/ReadUser", in, out, opts...)
 	if err != nil {
@@ -50,8 +51,8 @@ func (c *userAccountClient) ReadUser(ctx context.Context, in *Uuid, opts ...grpc
 	return out, nil
 }
 
-func (c *userAccountClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *userAccountClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.UserAccount/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -59,8 +60,8 @@ func (c *userAccountClient) UpdateUser(ctx context.Context, in *User, opts ...gr
 	return out, nil
 }
 
-func (c *userAccountClient) DeleteUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *userAccountClient) DeleteUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.UserAccount/DeleteUser", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -72,10 +73,10 @@ func (c *userAccountClient) DeleteUser(ctx context.Context, in *Uuid, opts ...gr
 // All implementations must embed UnimplementedUserAccountServer
 // for forward compatibility
 type UserAccountServer interface {
-	CreateUser(context.Context, *MakeUser) (*Result, error)
-	ReadUser(context.Context, *Uuid) (*UserDetail, error)
-	UpdateUser(context.Context, *User) (*Result, error)
-	DeleteUser(context.Context, *Uuid) (*Result, error)
+	CreateUser(context.Context, *MakeUser) (*servercomm.Result, error)
+	ReadUser(context.Context, *servercomm.Uuid) (*UserDetail, error)
+	UpdateUser(context.Context, *User) (*servercomm.Result, error)
+	DeleteUser(context.Context, *servercomm.Uuid) (*servercomm.Result, error)
 	mustEmbedUnimplementedUserAccountServer()
 }
 
@@ -83,16 +84,16 @@ type UserAccountServer interface {
 type UnimplementedUserAccountServer struct {
 }
 
-func (UnimplementedUserAccountServer) CreateUser(context.Context, *MakeUser) (*Result, error) {
+func (UnimplementedUserAccountServer) CreateUser(context.Context, *MakeUser) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUserAccountServer) ReadUser(context.Context, *Uuid) (*UserDetail, error) {
+func (UnimplementedUserAccountServer) ReadUser(context.Context, *servercomm.Uuid) (*UserDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadUser not implemented")
 }
-func (UnimplementedUserAccountServer) UpdateUser(context.Context, *User) (*Result, error) {
+func (UnimplementedUserAccountServer) UpdateUser(context.Context, *User) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
-func (UnimplementedUserAccountServer) DeleteUser(context.Context, *Uuid) (*Result, error) {
+func (UnimplementedUserAccountServer) DeleteUser(context.Context, *servercomm.Uuid) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
 }
 func (UnimplementedUserAccountServer) mustEmbedUnimplementedUserAccountServer() {}
@@ -127,7 +128,7 @@ func _UserAccount_CreateUser_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _UserAccount_ReadUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -139,7 +140,7 @@ func _UserAccount_ReadUser_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/v1.UserAccount/ReadUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountServer).ReadUser(ctx, req.(*Uuid))
+		return srv.(UserAccountServer).ReadUser(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -163,7 +164,7 @@ func _UserAccount_UpdateUser_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _UserAccount_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -175,7 +176,7 @@ func _UserAccount_DeleteUser_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/v1.UserAccount/DeleteUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountServer).DeleteUser(ctx, req.(*Uuid))
+		return srv.(UserAccountServer).DeleteUser(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -212,11 +213,11 @@ var UserAccount_ServiceDesc = grpc.ServiceDesc{
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OrganizationAccountClient interface {
-	CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*Result, error)
-	ReadOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error)
-	UpdateOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
-	DeleteOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error)
-	AppendUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error)
+	CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*servercomm.Result, error)
+	ReadOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error)
+	UpdateOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error)
+	DeleteOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error)
+	AppendUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error)
 }
 
 type organizationAccountClient struct {
@@ -227,8 +228,8 @@ func NewOrganizationAccountClient(cc grpc.ClientConnInterface) OrganizationAccou
 	return &organizationAccountClient{cc}
 }
 
-func (c *organizationAccountClient) CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *organizationAccountClient) CreateOrganization(ctx context.Context, in *MakeOrganization, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/CreateOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -236,7 +237,7 @@ func (c *organizationAccountClient) CreateOrganization(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *organizationAccountClient) ReadOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error) {
+func (c *organizationAccountClient) ReadOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error) {
 	out := new(OrganizationDetail)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/ReadOrganization", in, out, opts...)
 	if err != nil {
@@ -245,8 +246,8 @@ func (c *organizationAccountClient) ReadOrganization(ctx context.Context, in *Uu
 	return out, nil
 }
 
-func (c *organizationAccountClient) UpdateOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *organizationAccountClient) UpdateOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/UpdateOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -254,8 +255,8 @@ func (c *organizationAccountClient) UpdateOrganization(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *organizationAccountClient) DeleteOrganization(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
+func (c *organizationAccountClient) DeleteOrganization(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*servercomm.Result, error) {
+	out := new(servercomm.Result)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/DeleteOrganization", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -263,7 +264,7 @@ func (c *organizationAccountClient) DeleteOrganization(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *organizationAccountClient) AppendUser(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error) {
+func (c *organizationAccountClient) AppendUser(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*OrganizationDetail, error) {
 	out := new(OrganizationDetail)
 	err := c.cc.Invoke(ctx, "/v1.OrganizationAccount/AppendUser", in, out, opts...)
 	if err != nil {
@@ -276,11 +277,11 @@ func (c *organizationAccountClient) AppendUser(ctx context.Context, in *Uuid, op
 // All implementations must embed UnimplementedOrganizationAccountServer
 // for forward compatibility
 type OrganizationAccountServer interface {
-	CreateOrganization(context.Context, *MakeOrganization) (*Result, error)
-	ReadOrganization(context.Context, *Uuid) (*OrganizationDetail, error)
-	UpdateOrganization(context.Context, *Uuid) (*Result, error)
-	DeleteOrganization(context.Context, *Uuid) (*Result, error)
-	AppendUser(context.Context, *Uuid) (*OrganizationDetail, error)
+	CreateOrganization(context.Context, *MakeOrganization) (*servercomm.Result, error)
+	ReadOrganization(context.Context, *servercomm.Uuid) (*OrganizationDetail, error)
+	UpdateOrganization(context.Context, *servercomm.Uuid) (*servercomm.Result, error)
+	DeleteOrganization(context.Context, *servercomm.Uuid) (*servercomm.Result, error)
+	AppendUser(context.Context, *servercomm.Uuid) (*OrganizationDetail, error)
 	mustEmbedUnimplementedOrganizationAccountServer()
 }
 
@@ -288,19 +289,19 @@ type OrganizationAccountServer interface {
 type UnimplementedOrganizationAccountServer struct {
 }
 
-func (UnimplementedOrganizationAccountServer) CreateOrganization(context.Context, *MakeOrganization) (*Result, error) {
+func (UnimplementedOrganizationAccountServer) CreateOrganization(context.Context, *MakeOrganization) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOrganization not implemented")
 }
-func (UnimplementedOrganizationAccountServer) ReadOrganization(context.Context, *Uuid) (*OrganizationDetail, error) {
+func (UnimplementedOrganizationAccountServer) ReadOrganization(context.Context, *servercomm.Uuid) (*OrganizationDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadOrganization not implemented")
 }
-func (UnimplementedOrganizationAccountServer) UpdateOrganization(context.Context, *Uuid) (*Result, error) {
+func (UnimplementedOrganizationAccountServer) UpdateOrganization(context.Context, *servercomm.Uuid) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrganization not implemented")
 }
-func (UnimplementedOrganizationAccountServer) DeleteOrganization(context.Context, *Uuid) (*Result, error) {
+func (UnimplementedOrganizationAccountServer) DeleteOrganization(context.Context, *servercomm.Uuid) (*servercomm.Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrganization not implemented")
 }
-func (UnimplementedOrganizationAccountServer) AppendUser(context.Context, *Uuid) (*OrganizationDetail, error) {
+func (UnimplementedOrganizationAccountServer) AppendUser(context.Context, *servercomm.Uuid) (*OrganizationDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AppendUser not implemented")
 }
 func (UnimplementedOrganizationAccountServer) mustEmbedUnimplementedOrganizationAccountServer() {}
@@ -335,7 +336,7 @@ func _OrganizationAccount_CreateOrganization_Handler(srv interface{}, ctx contex
 }
 
 func _OrganizationAccount_ReadOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -347,13 +348,13 @@ func _OrganizationAccount_ReadOrganization_Handler(srv interface{}, ctx context.
 		FullMethod: "/v1.OrganizationAccount/ReadOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationAccountServer).ReadOrganization(ctx, req.(*Uuid))
+		return srv.(OrganizationAccountServer).ReadOrganization(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OrganizationAccount_UpdateOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -365,13 +366,13 @@ func _OrganizationAccount_UpdateOrganization_Handler(srv interface{}, ctx contex
 		FullMethod: "/v1.OrganizationAccount/UpdateOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationAccountServer).UpdateOrganization(ctx, req.(*Uuid))
+		return srv.(OrganizationAccountServer).UpdateOrganization(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OrganizationAccount_DeleteOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -383,13 +384,13 @@ func _OrganizationAccount_DeleteOrganization_Handler(srv interface{}, ctx contex
 		FullMethod: "/v1.OrganizationAccount/DeleteOrganization",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationAccountServer).DeleteOrganization(ctx, req.(*Uuid))
+		return srv.(OrganizationAccountServer).DeleteOrganization(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OrganizationAccount_AppendUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Uuid)
+	in := new(servercomm.Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -401,7 +402,7 @@ func _OrganizationAccount_AppendUser_Handler(srv interface{}, ctx context.Contex
 		FullMethod: "/v1.OrganizationAccount/AppendUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationAccountServer).AppendUser(ctx, req.(*Uuid))
+		return srv.(OrganizationAccountServer).AppendUser(ctx, req.(*servercomm.Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }

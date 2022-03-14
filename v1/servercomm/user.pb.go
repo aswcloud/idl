@@ -7,6 +7,7 @@
 package v1
 
 import (
+	servercomm "github.com/aswcloud/servercomm"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -294,7 +295,7 @@ type Organization struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id *Uuid `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id *servercomm.Uuid `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// required encrypt
 	UserNickname string  `protobuf:"bytes,2,opt,name=user_nickname,json=userNickname,proto3" json:"user_nickname,omitempty"`
 	UserEmail    *string `protobuf:"bytes,3,opt,name=user_email,json=userEmail,proto3,oneof" json:"user_email,omitempty"`
@@ -332,7 +333,7 @@ func (*Organization) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *Organization) GetId() *Uuid {
+func (x *Organization) GetId() *servercomm.Uuid {
 	if x != nil {
 		return x.Id
 	}
@@ -358,7 +359,7 @@ type OrganizationDetail struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id *Uuid `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id *servercomm.Uuid `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// required encrypt
 	UserNickname  string        `protobuf:"bytes,2,opt,name=user_nickname,json=userNickname,proto3" json:"user_nickname,omitempty"`
 	UserEmail     *string       `protobuf:"bytes,3,opt,name=user_email,json=userEmail,proto3,oneof" json:"user_email,omitempty"`
@@ -398,7 +399,7 @@ func (*OrganizationDetail) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *OrganizationDetail) GetId() *Uuid {
+func (x *OrganizationDetail) GetId() *servercomm.Uuid {
 	if x != nil {
 		return x.Id
 	}
@@ -551,8 +552,8 @@ var file_user_proto_goTypes = []interface{}{
 	(*Organization)(nil),       // 4: v1.Organization
 	(*OrganizationDetail)(nil), // 5: v1.OrganizationDetail
 	(*Namespace)(nil),          // 6: v1.Namespace
-	(*Uuid)(nil),               // 7: v1.Uuid
-	(*Result)(nil),             // 8: v1.Result
+	(*servercomm.Uuid)(nil),    // 7: v1.Uuid
+	(*servercomm.Result)(nil),  // 8: v1.Result
 }
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: v1.MakeUser.user:type_name -> v1.User
@@ -593,7 +594,6 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
-	file_base_proto_init()
 	file_kubernetes_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_user_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
