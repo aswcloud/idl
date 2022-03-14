@@ -7,7 +7,6 @@
 package servercomm
 
 import (
-	servercomm "github.com/aswcloud/servercomm"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -26,14 +25,14 @@ type Namespace struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name       string             `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid       *servercomm.Uuid   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	OwnerUuid  []*servercomm.Uuid `protobuf:"bytes,3,rep,name=owner_uuid,json=ownerUuid,proto3" json:"owner_uuid,omitempty"`
-	Deployment []*Deployment      `protobuf:"bytes,4,rep,name=deployment,proto3" json:"deployment,omitempty"`
-	Service    []*Service         `protobuf:"bytes,5,rep,name=service,proto3" json:"service,omitempty"`
-	Role       []*Role            `protobuf:"bytes,6,rep,name=role,proto3" json:"role,omitempty"`
-	Storage    []*Storage         `protobuf:"bytes,7,rep,name=storage,proto3" json:"storage,omitempty"`
-	Pod        []*Pod             `protobuf:"bytes,8,rep,name=pod,proto3" json:"pod,omitempty"`
+	Name       string        `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid       *Uuid         `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	OwnerUuid  []*Uuid       `protobuf:"bytes,3,rep,name=owner_uuid,json=ownerUuid,proto3" json:"owner_uuid,omitempty"`
+	Deployment []*Deployment `protobuf:"bytes,4,rep,name=deployment,proto3" json:"deployment,omitempty"`
+	Service    []*Service    `protobuf:"bytes,5,rep,name=service,proto3" json:"service,omitempty"`
+	Role       []*Role       `protobuf:"bytes,6,rep,name=role,proto3" json:"role,omitempty"`
+	Storage    []*Storage    `protobuf:"bytes,7,rep,name=storage,proto3" json:"storage,omitempty"`
+	Pod        []*Pod        `protobuf:"bytes,8,rep,name=pod,proto3" json:"pod,omitempty"`
 }
 
 func (x *Namespace) Reset() {
@@ -75,14 +74,14 @@ func (x *Namespace) GetName() string {
 	return ""
 }
 
-func (x *Namespace) GetUuid() *servercomm.Uuid {
+func (x *Namespace) GetUuid() *Uuid {
 	if x != nil {
 		return x.Uuid
 	}
 	return nil
 }
 
-func (x *Namespace) GetOwnerUuid() []*servercomm.Uuid {
+func (x *Namespace) GetOwnerUuid() []*Uuid {
 	if x != nil {
 		return x.OwnerUuid
 	}
@@ -381,13 +380,13 @@ func file_kubernetes_proto_rawDescGZIP() []byte {
 
 var file_kubernetes_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_kubernetes_proto_goTypes = []interface{}{
-	(*Namespace)(nil),       // 0: v1.Namespace
-	(*Deployment)(nil),      // 1: v1.Deployment
-	(*Service)(nil),         // 2: v1.Service
-	(*Role)(nil),            // 3: v1.Role
-	(*Storage)(nil),         // 4: v1.Storage
-	(*Pod)(nil),             // 5: v1.Pod
-	(*servercomm.Uuid)(nil), // 6: v1.Uuid
+	(*Namespace)(nil),  // 0: v1.Namespace
+	(*Deployment)(nil), // 1: v1.Deployment
+	(*Service)(nil),    // 2: v1.Service
+	(*Role)(nil),       // 3: v1.Role
+	(*Storage)(nil),    // 4: v1.Storage
+	(*Pod)(nil),        // 5: v1.Pod
+	(*Uuid)(nil),       // 6: v1.Uuid
 }
 var file_kubernetes_proto_depIdxs = []int32{
 	6, // 0: v1.Namespace.uuid:type_name -> v1.Uuid
@@ -410,6 +409,7 @@ func file_kubernetes_proto_init() {
 	if File_kubernetes_proto != nil {
 		return
 	}
+	file_base_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_kubernetes_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Namespace); i {

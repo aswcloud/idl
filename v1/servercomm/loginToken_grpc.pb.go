@@ -4,7 +4,6 @@ package servercomm
 
 import (
 	context "context"
-	servercomm "github.com/aswcloud/servercomm"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,19 +18,19 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TokenClient interface {
-	CreateRegisterToken(ctx context.Context, in *servercomm.Void, opts ...grpc.CallOption) (*TokenMessage, error)
+	CreateRegisterToken(ctx context.Context, in *Void, opts ...grpc.CallOption) (*TokenMessage, error)
 	CreateRefreshToken(ctx context.Context, in *CreateRefreshTokenMessage, opts ...grpc.CallOption) (*TokenMessage, error)
 	// Needs, Authorization
-	ReadRefreshToken(ctx context.Context, in *servercomm.Void, opts ...grpc.CallOption) (*RefreshTokenList, error)
+	ReadRefreshToken(ctx context.Context, in *Void, opts ...grpc.CallOption) (*RefreshTokenList, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	UpdatehRefreshToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*TokenMessage, error)
+	UpdatehRefreshToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*TokenMessage, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	DeleteRefreshToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*DeleteRefreshTokenMessage, error)
+	DeleteRefreshToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*DeleteRefreshTokenMessage, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	CreateAccessToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*TokenMessage, error)
+	CreateAccessToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*TokenMessage, error)
 }
 
 type tokenClient struct {
@@ -42,7 +41,7 @@ func NewTokenClient(cc grpc.ClientConnInterface) TokenClient {
 	return &tokenClient{cc}
 }
 
-func (c *tokenClient) CreateRegisterToken(ctx context.Context, in *servercomm.Void, opts ...grpc.CallOption) (*TokenMessage, error) {
+func (c *tokenClient) CreateRegisterToken(ctx context.Context, in *Void, opts ...grpc.CallOption) (*TokenMessage, error) {
 	out := new(TokenMessage)
 	err := c.cc.Invoke(ctx, "/v1.Token/CreateRegisterToken", in, out, opts...)
 	if err != nil {
@@ -60,7 +59,7 @@ func (c *tokenClient) CreateRefreshToken(ctx context.Context, in *CreateRefreshT
 	return out, nil
 }
 
-func (c *tokenClient) ReadRefreshToken(ctx context.Context, in *servercomm.Void, opts ...grpc.CallOption) (*RefreshTokenList, error) {
+func (c *tokenClient) ReadRefreshToken(ctx context.Context, in *Void, opts ...grpc.CallOption) (*RefreshTokenList, error) {
 	out := new(RefreshTokenList)
 	err := c.cc.Invoke(ctx, "/v1.Token/ReadRefreshToken", in, out, opts...)
 	if err != nil {
@@ -69,7 +68,7 @@ func (c *tokenClient) ReadRefreshToken(ctx context.Context, in *servercomm.Void,
 	return out, nil
 }
 
-func (c *tokenClient) UpdatehRefreshToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*TokenMessage, error) {
+func (c *tokenClient) UpdatehRefreshToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*TokenMessage, error) {
 	out := new(TokenMessage)
 	err := c.cc.Invoke(ctx, "/v1.Token/UpdatehRefreshToken", in, out, opts...)
 	if err != nil {
@@ -78,7 +77,7 @@ func (c *tokenClient) UpdatehRefreshToken(ctx context.Context, in *servercomm.Uu
 	return out, nil
 }
 
-func (c *tokenClient) DeleteRefreshToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*DeleteRefreshTokenMessage, error) {
+func (c *tokenClient) DeleteRefreshToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*DeleteRefreshTokenMessage, error) {
 	out := new(DeleteRefreshTokenMessage)
 	err := c.cc.Invoke(ctx, "/v1.Token/DeleteRefreshToken", in, out, opts...)
 	if err != nil {
@@ -87,7 +86,7 @@ func (c *tokenClient) DeleteRefreshToken(ctx context.Context, in *servercomm.Uui
 	return out, nil
 }
 
-func (c *tokenClient) CreateAccessToken(ctx context.Context, in *servercomm.Uuid, opts ...grpc.CallOption) (*TokenMessage, error) {
+func (c *tokenClient) CreateAccessToken(ctx context.Context, in *Uuid, opts ...grpc.CallOption) (*TokenMessage, error) {
 	out := new(TokenMessage)
 	err := c.cc.Invoke(ctx, "/v1.Token/CreateAccessToken", in, out, opts...)
 	if err != nil {
@@ -100,19 +99,19 @@ func (c *tokenClient) CreateAccessToken(ctx context.Context, in *servercomm.Uuid
 // All implementations must embed UnimplementedTokenServer
 // for forward compatibility
 type TokenServer interface {
-	CreateRegisterToken(context.Context, *servercomm.Void) (*TokenMessage, error)
+	CreateRegisterToken(context.Context, *Void) (*TokenMessage, error)
 	CreateRefreshToken(context.Context, *CreateRefreshTokenMessage) (*TokenMessage, error)
 	// Needs, Authorization
-	ReadRefreshToken(context.Context, *servercomm.Void) (*RefreshTokenList, error)
+	ReadRefreshToken(context.Context, *Void) (*RefreshTokenList, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	UpdatehRefreshToken(context.Context, *servercomm.Uuid) (*TokenMessage, error)
+	UpdatehRefreshToken(context.Context, *Uuid) (*TokenMessage, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	DeleteRefreshToken(context.Context, *servercomm.Uuid) (*DeleteRefreshTokenMessage, error)
+	DeleteRefreshToken(context.Context, *Uuid) (*DeleteRefreshTokenMessage, error)
 	// Needs, Authorization
 	// Uuid : Refreshtoken Uuid
-	CreateAccessToken(context.Context, *servercomm.Uuid) (*TokenMessage, error)
+	CreateAccessToken(context.Context, *Uuid) (*TokenMessage, error)
 	mustEmbedUnimplementedTokenServer()
 }
 
@@ -120,22 +119,22 @@ type TokenServer interface {
 type UnimplementedTokenServer struct {
 }
 
-func (UnimplementedTokenServer) CreateRegisterToken(context.Context, *servercomm.Void) (*TokenMessage, error) {
+func (UnimplementedTokenServer) CreateRegisterToken(context.Context, *Void) (*TokenMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRegisterToken not implemented")
 }
 func (UnimplementedTokenServer) CreateRefreshToken(context.Context, *CreateRefreshTokenMessage) (*TokenMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRefreshToken not implemented")
 }
-func (UnimplementedTokenServer) ReadRefreshToken(context.Context, *servercomm.Void) (*RefreshTokenList, error) {
+func (UnimplementedTokenServer) ReadRefreshToken(context.Context, *Void) (*RefreshTokenList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadRefreshToken not implemented")
 }
-func (UnimplementedTokenServer) UpdatehRefreshToken(context.Context, *servercomm.Uuid) (*TokenMessage, error) {
+func (UnimplementedTokenServer) UpdatehRefreshToken(context.Context, *Uuid) (*TokenMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatehRefreshToken not implemented")
 }
-func (UnimplementedTokenServer) DeleteRefreshToken(context.Context, *servercomm.Uuid) (*DeleteRefreshTokenMessage, error) {
+func (UnimplementedTokenServer) DeleteRefreshToken(context.Context, *Uuid) (*DeleteRefreshTokenMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRefreshToken not implemented")
 }
-func (UnimplementedTokenServer) CreateAccessToken(context.Context, *servercomm.Uuid) (*TokenMessage, error) {
+func (UnimplementedTokenServer) CreateAccessToken(context.Context, *Uuid) (*TokenMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccessToken not implemented")
 }
 func (UnimplementedTokenServer) mustEmbedUnimplementedTokenServer() {}
@@ -152,7 +151,7 @@ func RegisterTokenServer(s grpc.ServiceRegistrar, srv TokenServer) {
 }
 
 func _Token_CreateRegisterToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(servercomm.Void)
+	in := new(Void)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -164,7 +163,7 @@ func _Token_CreateRegisterToken_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/v1.Token/CreateRegisterToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).CreateRegisterToken(ctx, req.(*servercomm.Void))
+		return srv.(TokenServer).CreateRegisterToken(ctx, req.(*Void))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -188,7 +187,7 @@ func _Token_CreateRefreshToken_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _Token_ReadRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(servercomm.Void)
+	in := new(Void)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -200,13 +199,13 @@ func _Token_ReadRefreshToken_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/v1.Token/ReadRefreshToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).ReadRefreshToken(ctx, req.(*servercomm.Void))
+		return srv.(TokenServer).ReadRefreshToken(ctx, req.(*Void))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Token_UpdatehRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(servercomm.Uuid)
+	in := new(Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -218,13 +217,13 @@ func _Token_UpdatehRefreshToken_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: "/v1.Token/UpdatehRefreshToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).UpdatehRefreshToken(ctx, req.(*servercomm.Uuid))
+		return srv.(TokenServer).UpdatehRefreshToken(ctx, req.(*Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Token_DeleteRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(servercomm.Uuid)
+	in := new(Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -236,13 +235,13 @@ func _Token_DeleteRefreshToken_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/v1.Token/DeleteRefreshToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).DeleteRefreshToken(ctx, req.(*servercomm.Uuid))
+		return srv.(TokenServer).DeleteRefreshToken(ctx, req.(*Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Token_CreateAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(servercomm.Uuid)
+	in := new(Uuid)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -254,7 +253,7 @@ func _Token_CreateAccessToken_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: "/v1.Token/CreateAccessToken",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TokenServer).CreateAccessToken(ctx, req.(*servercomm.Uuid))
+		return srv.(TokenServer).CreateAccessToken(ctx, req.(*Uuid))
 	}
 	return interceptor(ctx, in, info, handler)
 }

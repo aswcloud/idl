@@ -7,7 +7,6 @@
 package servercomm
 
 import (
-	servercomm "github.com/aswcloud/servercomm"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -314,8 +313,8 @@ var file_loginToken_proto_goTypes = []interface{}{
 	(*CreateRefreshTokenMessage)(nil), // 1: v1.CreateRefreshTokenMessage
 	(*DeleteRefreshTokenMessage)(nil), // 2: v1.DeleteRefreshTokenMessage
 	(*TokenMessage)(nil),              // 3: v1.TokenMessage
-	(*servercomm.Void)(nil),           // 4: v1.Void
-	(*servercomm.Uuid)(nil),           // 5: v1.Uuid
+	(*Void)(nil),                      // 4: v1.Void
+	(*Uuid)(nil),                      // 5: v1.Uuid
 }
 var file_loginToken_proto_depIdxs = []int32{
 	3, // 0: v1.RefreshTokenList.refresh_token:type_name -> v1.TokenMessage
@@ -343,6 +342,7 @@ func file_loginToken_proto_init() {
 	if File_loginToken_proto != nil {
 		return
 	}
+	file_base_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_loginToken_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RefreshTokenList); i {
