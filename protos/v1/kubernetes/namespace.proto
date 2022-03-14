@@ -4,9 +4,9 @@ package v1;
 
 option go_package = "github.com/aswcloud/v1/kubernetes";
 
-import "deployment.proto";
-import "service.proto";
-import "pvc.proto";
+// import "deployment.proto";
+// import "service.proto";
+// import "pvc.proto";
 
 message list_namespace { 
     repeated string name = 1;
