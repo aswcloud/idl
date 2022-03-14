@@ -14,7 +14,7 @@ service Token {
     rpc CreateRefreshToken(CreateRefreshTokenMessage) returns (RefreshToken);
 
     // Needs, Authorization
-    rpc ReadRefreshToken(Void) returns (RefreshTokenList)
+    rpc ReadRefreshToken(Void) returns (RefreshTokenList);
 
     // Needs, Authorization
     // Uuid : Refreshtoken Uuid
