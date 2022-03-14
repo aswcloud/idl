@@ -4,13 +4,9 @@ package v1;
 
 option go_package = "github.com/aswcloud/v1/kubernetes";
 
-message namespace {
-    string namespace = 1;
-}
+message void {}
 
-message Void {}
-
-message Uuid { 
+message uuid { 
     string uuid = 1;
 }
 
@@ -18,7 +14,6 @@ message key_value {
     string key = 1;
     string value = 2;
 }
-
 
 message result { 
     bool result = 1;

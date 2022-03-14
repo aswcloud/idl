@@ -15,7 +15,7 @@ service Kubernetes {
     rpc CreateNamespace(namespace) returns (result);
     // rpc ReadNamespace(string) returns (Void);
     rpc DeleteNamespace(namespace) returns (result);
-    rpc ListNamespace(namespace) returns (list_namespace);
+    rpc ListNamespace(void) returns (list_namespace);
 
     rpc CreateService(service) returns (service);
     // rpc ReadService(Void) returns (Void);

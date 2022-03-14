@@ -8,6 +8,10 @@ option go_package = "github.com/aswcloud/v1/kubernetes";
 // import "service.proto";
 // import "pvc.proto";
 
+message namespace {
+    string namespace = 1;
+}
+
 message list_namespace { 
     repeated string name = 1;
 }
