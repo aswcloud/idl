@@ -31,13 +31,15 @@ jobs:
       - name: Run scripts
         run: |
           mkdir ../test
-          cp -r ./protos/v1/ ../test
+          cp -R ./protos/v1/ ../test
           cd ../test
           
           go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
           go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
           export PATH="$PATH:$HOME/go/bin"
           echo "KU<"
+          ls
+          pwd
           cd kubernetes
           echo "KU<2"
           for file in *.proto
