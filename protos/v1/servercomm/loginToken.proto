@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package v1;
 
-option go_package = "github.com/aswcloud/gen/go/v1";
+option go_package = "github.com/aswcloud/v1/servercomm";
 
 import "base.proto";
 
