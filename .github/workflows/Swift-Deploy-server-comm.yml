@@ -27,12 +27,12 @@ jobs:
       - name: Run a one-line script
         run: |
           mkdir -p ./scripts
-          cp -R ./protos/v1/* ./scripts
+          cp -R ./protos/v1/servercomm/* ./scripts
           wget https://github.com/grpc/grpc-swift/releases/download/1.6.1/protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip
           sudo unzip ./protoc-grpc-swift-plugins-linux-x86_64-1.6.1.zip -d /usr/bin
           DIR="./Sources/AswProtobuf_tmp"
           mkdir -p ./Sources/AswProtobuf_tmp
-          for file in "./scripts/servercomm/"*.proto
+          for file in "./scripts/"*.proto
           do
           	protoc --swift_opt=Visibility=Public --grpc-swift_opt=Visibility=Public --swift_out=$DIR --grpc-swift_out=$DIR -I ./scripts "$file"
           	echo "WORK : [$file]"
