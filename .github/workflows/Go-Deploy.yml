@@ -31,7 +31,7 @@ jobs:
       - name: Run scripts
         run: |
           mkdir ../test
-          cp -R ./protos/v1/* ../test
+          cp -r ./protos/v1/ ../test
           cd ../test
           
           go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
