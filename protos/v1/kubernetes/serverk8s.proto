@@ -11,22 +11,27 @@ import "service.proto";
 import "namespace.proto";
 
 service Kubernetes { 
-    rpc CreateNamespace(name) returns (result);
+    rpc CreateNamespace(namespace) returns (result);
     // rpc ReadNamespace(string) returns (Void);
-    rpc DeleteNamespace(name) returns (result);
+    rpc DeleteNamespace(namespace) returns (result);
+    rpc ListNamespace(namespace) returns (list_namespace);
 
     rpc CreateService(service) returns (service);
     // rpc ReadService(Void) returns (Void);
     // rpc UpdateService(Void) returns (Void);
     rpc DeleteService(delete_service) returns (result);
+    rpc ListService(namespace) returns (list_service);
 
     rpc CreateDeployment(deployment) returns (result);
     // rpc ReadDeployment(Void) returns (Void);
     // rpc UpdateDeployment(Void) returns (Void);
     rpc DeleteDeployment(delete_deployment) returns (result);
+    rpc ListDeployment(namespace) returns (list_deployment)
     
     rpc CreatePersistentVolumeClaim(pvc) returns (result);
     // rpc ReadPersistentVolumeClaim(Void) returns (Void);
     // rpc UpdatePersistentVolumeClaim(Void) returns (Void);
     rpc DeletePersistentVolumeClaim(delete_pvc) returns (result);
+    rpc ListPersistentVolumeClaim(namespace) returns (list_pvc);
+    
 }

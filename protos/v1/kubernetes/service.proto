@@ -25,3 +25,7 @@ message delete_service {
     string namespace = 1;
     string name = 2;
 }
+
+message list_service { 
+    repeated string name = 1;
+}

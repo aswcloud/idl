@@ -8,6 +8,10 @@ import "deployment.proto";
 import "service.proto";
 import "pvc.proto";
 
+message list_namespace { 
+    repeated string name = 1;
+}
+
 message namespace { 
     repeated deployment deployment = 1;
     repeated service service = 2;

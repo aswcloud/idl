@@ -37,3 +37,7 @@ message delete_deployment {
     string namespace = 1;
     string name = 2;
 }
+
+message list_deployment { 
+    repeated string name = 1;
+}
