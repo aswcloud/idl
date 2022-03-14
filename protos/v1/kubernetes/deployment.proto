@@ -4,7 +4,7 @@ package v1;
 
 option go_package = "github.com/aswcloud/v1/kubernetes";
 
-// import "base.proto";
+import "base.proto";
 
 message deployment_volumemount { 
     string name = 1;
