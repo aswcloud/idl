@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/aswcloud/v1/kubernetes";
+
+message service_port { 
+    string name = 1;
+    int32 target_port = 2;
+    int32 node_port = 3;
+    int32 container_port = 4;
+}
+
+message service { 
+    string namespace = 1;
+
+    string name = 2;
+    string type = 3;
+    // deployment template_name
+    string template_name = 4;
+    repeated service_port ports = 5;
+}
+
+message delete_service { 
+    string namespace = 1;
+    string name = 2;
+}

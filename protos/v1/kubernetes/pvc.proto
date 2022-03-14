@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/aswcloud/v1/kubernetes";
+
+message pvc { 
+    string namespace = 1;
+    
+    string name = 2;
+    string capacity = 3;
+}
+
+message delete_pvc {
+    string namespace = 1;
+    string name = 2;
+}
