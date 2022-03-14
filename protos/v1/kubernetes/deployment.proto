@@ -19,7 +19,7 @@ message deployment_container {
     string name = 1;
     string image = 2;
     repeated int32 ports = 3;
-    repeated keyvalue env = 4;
+    repeated key_value env = 4;
     repeated deployment_volumemount volume_mount = 5;
 }
 
