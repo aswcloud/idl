@@ -12,8 +12,8 @@ message list_namespace {
     repeated string name = 1;
 }
 
-message namespace { 
-    repeated deployment deployment = 1;
-    repeated service service = 2;
-    repeated pvc pvc = 3;
-}
+// message namespace { 
+//     repeated deployment deployment = 1;
+//     repeated service service = 2;
+//     repeated pvc pvc = 3;
+// }
