@@ -21,7 +21,7 @@ type KubernetesClient interface {
 	CreateNamespace(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*Result, error)
 	// rpc ReadNamespace(string) returns (Void);
 	DeleteNamespace(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*Result, error)
-	ListNamespace(ctx context.Context, in *Void, opts ...grpc.CallOption) (*ListNamespace, error)
+	ListNamespace(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListNamespace, error)
 	CreateService(ctx context.Context, in *Service, opts ...grpc.CallOption) (*Service, error)
 	// rpc ReadService(Void) returns (Void);
 	// rpc UpdateService(Void) returns (Void);
@@ -65,7 +65,7 @@ func (c *kubernetesClient) DeleteNamespace(ctx context.Context, in *Namespace, o
 	return out, nil
 }
 
-func (c *kubernetesClient) ListNamespace(ctx context.Context, in *Void, opts ...grpc.CallOption) (*ListNamespace, error) {
+func (c *kubernetesClient) ListNamespace(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListNamespace, error) {
 	out := new(ListNamespace)
 	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ListNamespace", in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ type KubernetesServer interface {
 	CreateNamespace(context.Context, *Namespace) (*Result, error)
 	// rpc ReadNamespace(string) returns (Void);
 	DeleteNamespace(context.Context, *Namespace) (*Result, error)
-	ListNamespace(context.Context, *Void) (*ListNamespace, error)
+	ListNamespace(context.Context, *Empty) (*ListNamespace, error)
 	CreateService(context.Context, *Service) (*Service, error)
 	// rpc ReadService(Void) returns (Void);
 	// rpc UpdateService(Void) returns (Void);
@@ -191,7 +191,7 @@ func (UnimplementedKubernetesServer) CreateNamespace(context.Context, *Namespace
 func (UnimplementedKubernetesServer) DeleteNamespace(context.Context, *Namespace) (*Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
-func (UnimplementedKubernetesServer) ListNamespace(context.Context, *Void) (*ListNamespace, error) {
+func (UnimplementedKubernetesServer) ListNamespace(context.Context, *Empty) (*ListNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListNamespace not implemented")
 }
 func (UnimplementedKubernetesServer) CreateService(context.Context, *Service) (*Service, error) {
@@ -271,7 +271,7 @@ func _Kubernetes_DeleteNamespace_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _Kubernetes_ListNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Void)
+	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -283,7 +283,7 @@ func _Kubernetes_ListNamespace_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/v1.Kubernetes/ListNamespace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesServer).ListNamespace(ctx, req.(*Void))
+		return srv.(KubernetesServer).ListNamespace(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
