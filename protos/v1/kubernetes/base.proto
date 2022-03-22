@@ -4,8 +4,7 @@ package v1;
 
 option go_package = "github.com/aswcloud/v1/kubernetes";
 
-message void {
-    int32 empty = 1;
+message empty {
 }
 
 message uuid { 
