@@ -9,6 +9,8 @@ message pvc {
     
     string name = 2;
     string capacity = 3;
+    string access_mode = 4;
+    string storage_class_name = 5;
 }
 
 message delete_pvc {
