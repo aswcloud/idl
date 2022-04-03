@@ -1,0 +1,34 @@
+syntax = "proto3";
+package v1;
+option go_package = "github.com/aswcloud/v1/servercomm";
+
+message ListDeployment { 
+    repeated Deployment list = 1;
+}
+
+message UpdateDeployment { 
+    string namespace = 1;
+    string deploymentName = 1;
+    
+    Deployment newSource = 2;
+}
+
+message Deployment {
+    string namespace = 1;
+    string name = 2;
+    string template_name = 3;
+    int32 replica_count = 4;
+    DeploymentContainer containers = 6;
+}
+
+message DeploymentContainer { 
+    string name = 1;
+    string image = 2;
+    repeated int32 ports = 3;
+    repeated KeyValue env = 4;
+}
+
+message DeleteDeployment { 
+    string namespace = 1;
+    string name = 2;
+}

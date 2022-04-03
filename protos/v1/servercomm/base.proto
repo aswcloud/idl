@@ -15,3 +15,8 @@ message Result {
     optional string error = 2;
     repeated string any = 3;
 }
+
+message KeyValue { 
+    string key = 1;
+    string value = 2;
+}

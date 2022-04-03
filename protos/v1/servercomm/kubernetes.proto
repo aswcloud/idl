@@ -1,34 +1,43 @@
 syntax = "proto3";
-
 package v1;
-
 option go_package = "github.com/aswcloud/v1/servercomm";
 
 import "base.proto";
 
-message Namespace {
-    string name = 1;
+import "k8s_namespace.proto"
+import "k8s_deployment.proto"
+import "k8s_pods.proto"
+import "k8s_service.proto"
+import "k8s_stroage.proto"
 
-    Uuid uuid = 2;
-    repeated Uuid owner_uuid = 3;
-    repeated Deployment deployment = 4;
-    repeated Service service = 5;
-    repeated Role role = 6;
-    repeated Storage storage = 7;
-    repeated Pod pod = 8;
+
+service Kubernetes {
+    // Needs, Authorization
+    rpc CreateNamespace(Namespace) returns (Result);
+    // Needs, Authorization
+    rpc ReadNamespace(Void) returns (ListNamespace);
+    // Needs, Authorization
+    rpc UpdateNamespace(UpdateNamespace) returns (Result);
+    // Needs, Authorization
+    rpc DeleteNamespace(Namespace) returns (Result);
+
+
+    // Needs, Authorization
+    rpc CreateDeployment(Deployment) returns (Result);
+    // Needs, Authorization
+    rpc ReadDeployment(Namespace) returns (ListDeployment);
+    // Needs, Authorization
+    rpc UpdateDeployment(UpdateDeployment) returns (Result);
+    // Needs, Authorization
+    rpc DeleteDeployment(DeleteDeployment) returns (Result);
+    
 }
 
-message Deployment { 
-    repeated Pod pod = 1;
-}
 
 message Service { 
     string type = 1;
 } 
 
-message Role { 
-
-}
 
 message Storage { 
 
