@@ -5,7 +5,6 @@ package v1;
 option go_package = "github.com/aswcloud/v1/servercomm";
 
 import "base.proto";
-import "kubernetes.proto";
 
 service UserAccount {
     rpc CreateUser(MakeUser) returns (Result);
@@ -14,13 +13,13 @@ service UserAccount {
     rpc DeleteUser(Uuid) returns (Result);
 }
 
-service OrganizationAccount { 
-    rpc CreateOrganization(MakeOrganization) returns (Result);
-    rpc ReadOrganization(Uuid) returns (OrganizationDetail);
-    rpc UpdateOrganization(Uuid) returns (Result);
-    rpc DeleteOrganization(Uuid) returns (Result);
-    rpc AppendUser(Uuid) returns (OrganizationDetail);
-}
+// service OrganizationAccount { 
+//     rpc CreateOrganization(MakeOrganization) returns (Result);
+//     rpc ReadOrganization(Uuid) returns (OrganizationDetail);
+//     rpc UpdateOrganization(Uuid) returns (Result);
+//     rpc DeleteOrganization(Uuid) returns (Result);
+//     rpc AppendUser(Uuid) returns (OrganizationDetail);
+// }
 
 message MakeUser { 
     string token = 1;
@@ -41,29 +40,26 @@ message UserDetail {
     string user_id = 2;
     string user_nickname = 3;
     optional string user_email = 4;
-    
-    repeated namespace kube_namespace = 5;
-    repeated Organization user_oranization = 6;
 }
 
-message MakeOrganization { 
-    string token = 1;
-    Organization organization = 2;
-}
+// message MakeOrganization { 
+//     string token = 1;
+//     Organization organization = 2;
+// }
 
-message Organization { 
-    Uuid id = 1;
-    // required encrypt
-    string user_nickname = 2;
-    optional string user_email = 3;
-}
+// message Organization { 
+//     Uuid id = 1;
+//     // required encrypt
+//     string user_nickname = 2;
+//     optional string user_email = 3;
+// }
 
-message OrganizationDetail { 
-    Uuid id = 1;
-    // required encrypt
-    string user_nickname = 2;
+// message OrganizationDetail { 
+//     Uuid id = 1;
+//     // required encrypt
+//     string user_nickname = 2;
 
-    optional string user_email = 3;
-    repeated UserDetail user = 4;
-    repeated namespace kube_namespace = 5;
-}
+//     optional string user_email = 3;
+//     repeated UserDetail user = 4;
+//     repeated namespace kube_namespace = 5;
+// }
