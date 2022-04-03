@@ -13,22 +13,22 @@ import "k8s_storage.proto";
 
 service Kubernetes {
     // Needs, Authorization
-    rpc CreateNamespace(Namespace) returns (Result);
+    rpc CreateNamespace(namespace) returns (Result);
     // Needs, Authorization
-    rpc ReadNamespace(Void) returns (ListNamespace);
+    rpc ReadNamespace(Void) returns (list_namespace);
     // Needs, Authorization
-    rpc UpdateNamespace(UpdateNamespace) returns (Result);
+    rpc UpdateNamespace(update_namespace) returns (Result);
     // Needs, Authorization
-    rpc DeleteNamespace(Namespace) returns (Result);
+    rpc DeleteNamespace(namespace) returns (Result);
 
 
     // Needs, Authorization
-    rpc CreateDeployment(Deployment) returns (Result);
+    rpc CreateDeployment(deployment) returns (Result);
     // Needs, Authorization
-    rpc ReadDeployment(Namespace) returns (ListDeployment);
+    rpc ReadDeployment(namespace) returns (list_deployment);
     // Needs, Authorization
-    rpc UpdateDeployment(UpdateDeployment) returns (Result);
+    rpc UpdateDeployment(update_deployment) returns (Result);
     // Needs, Authorization
-    rpc DeleteDeployment(DeleteDeployment) returns (Result);
+    rpc DeleteDeployment(delete_deployment) returns (Result);
     
 }

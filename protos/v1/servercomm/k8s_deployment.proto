@@ -4,18 +4,18 @@ option go_package = "github.com/aswcloud/v1/servercomm";
 
 import "base.proto";
 
-message ListDeployment { 
+message list_deployment { 
     repeated Deployment list = 1;
 }
 
-message UpdateDeployment { 
+message update_deployment { 
     string namespace = 1;
-    string deploymentName = 2;
+    string deployment_name = 2;
     
-    Deployment newSource = 3;
+    Deployment new_source = 3;
 }
 
-message Deployment {
+message deployment {
     string namespace = 1;
     string name = 2;
     string template_name = 3;
@@ -23,14 +23,14 @@ message Deployment {
     DeploymentContainer containers = 6;
 }
 
-message DeploymentContainer { 
+message deployment_container { 
     string name = 1;
     string image = 2;
     repeated int32 ports = 3;
     repeated KeyValue env = 4;
 }
 
-message DeleteDeployment { 
+message delete_deployment { 
     string namespace = 1;
     string name = 2;
 }

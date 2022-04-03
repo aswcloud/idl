@@ -2,16 +2,16 @@ syntax = "proto3";
 package v1;
 option go_package = "github.com/aswcloud/v1/servercomm";
 
-message ListNamespace { 
+message list_namespace { 
     repeated Namespace list = 1;
 }
 
-message UpdateNamespace { 
+message update_namespace { 
     Namespace source = 1;
     Namespace newSource = 2;
 }
 
-message Namespace {
+message namespace {
     string name = 1;
 }
 
