@@ -42,7 +42,7 @@ message UserDetail {
     string user_nickname = 3;
     optional string user_email = 4;
     
-    repeated Namespace kube_namespace = 5;
+    repeated namespace kube_namespace = 5;
     repeated Organization user_oranization = 6;
 }
 
@@ -65,5 +65,5 @@ message OrganizationDetail {
 
     optional string user_email = 3;
     repeated UserDetail user = 4;
-    repeated Namespace kube_namespace = 5;
+    repeated namespace kube_namespace = 5;
 }
