@@ -10,9 +10,9 @@ message ListDeployment {
 
 message UpdateDeployment { 
     string namespace = 1;
-    string deploymentName = 1;
+    string deploymentName = 2;
     
-    Deployment newSource = 2;
+    Deployment newSource = 3;
 }
 
 message Deployment {
