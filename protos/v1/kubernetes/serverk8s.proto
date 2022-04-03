@@ -9,7 +9,7 @@ import "deployment.proto";
 import "pvc.proto";
 import "service.proto";
 import "namespace.proto";
-import "base.proto";
+import "k8s_base.proto";
 
 service Kubernetes { 
     rpc CreateNamespace(namespace) returns (result);
