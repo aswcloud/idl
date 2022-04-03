@@ -8,7 +8,7 @@ import "k8s_namespace.proto";
 import "k8s_deployment.proto";
 import "k8s_pods.proto";
 import "k8s_service.proto";
-import "k8s_stroage.proto";
+import "k8s_storage.proto";
 
 
 service Kubernetes {
@@ -31,18 +31,4 @@ service Kubernetes {
     // Needs, Authorization
     rpc DeleteDeployment(DeleteDeployment) returns (Result);
     
-}
-
-
-message Service { 
-    string type = 1;
-} 
-
-
-message Storage { 
-
-}
-
-message Pod {
-
 }
