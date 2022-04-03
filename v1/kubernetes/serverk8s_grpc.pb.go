@@ -49,7 +49,7 @@ func NewKubernetesClient(cc grpc.ClientConnInterface) KubernetesClient {
 
 func (c *kubernetesClient) CreateNamespace(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/CreateNamespace", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/CreateNamespace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *kubernetesClient) CreateNamespace(ctx context.Context, in *Namespace, o
 
 func (c *kubernetesClient) DeleteNamespace(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/DeleteNamespace", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/DeleteNamespace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ func (c *kubernetesClient) DeleteNamespace(ctx context.Context, in *Namespace, o
 
 func (c *kubernetesClient) ListNamespace(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*ListNamespace, error) {
 	out := new(ListNamespace)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ListNamespace", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/ListNamespace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +76,7 @@ func (c *kubernetesClient) ListNamespace(ctx context.Context, in *Empty, opts ..
 
 func (c *kubernetesClient) CreateService(ctx context.Context, in *Service, opts ...grpc.CallOption) (*Service, error) {
 	out := new(Service)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/CreateService", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/CreateService", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,7 +85,7 @@ func (c *kubernetesClient) CreateService(ctx context.Context, in *Service, opts 
 
 func (c *kubernetesClient) DeleteService(ctx context.Context, in *DeleteService, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/DeleteService", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/DeleteService", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func (c *kubernetesClient) DeleteService(ctx context.Context, in *DeleteService,
 
 func (c *kubernetesClient) ListService(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*ListService, error) {
 	out := new(ListService)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ListService", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/ListService", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ func (c *kubernetesClient) ListService(ctx context.Context, in *Namespace, opts 
 
 func (c *kubernetesClient) CreateDeployment(ctx context.Context, in *Deployment, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/CreateDeployment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/CreateDeployment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func (c *kubernetesClient) CreateDeployment(ctx context.Context, in *Deployment,
 
 func (c *kubernetesClient) DeleteDeployment(ctx context.Context, in *DeleteDeployment, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/DeleteDeployment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/DeleteDeployment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +121,7 @@ func (c *kubernetesClient) DeleteDeployment(ctx context.Context, in *DeleteDeplo
 
 func (c *kubernetesClient) ListDeployment(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*ListDeployment, error) {
 	out := new(ListDeployment)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ListDeployment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/ListDeployment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +130,7 @@ func (c *kubernetesClient) ListDeployment(ctx context.Context, in *Namespace, op
 
 func (c *kubernetesClient) CreatePersistentVolumeClaim(ctx context.Context, in *Pvc, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/CreatePersistentVolumeClaim", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/CreatePersistentVolumeClaim", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -139,7 +139,7 @@ func (c *kubernetesClient) CreatePersistentVolumeClaim(ctx context.Context, in *
 
 func (c *kubernetesClient) DeletePersistentVolumeClaim(ctx context.Context, in *DeletePvc, opts ...grpc.CallOption) (*Result, error) {
 	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/DeletePersistentVolumeClaim", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/DeletePersistentVolumeClaim", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,7 +148,7 @@ func (c *kubernetesClient) DeletePersistentVolumeClaim(ctx context.Context, in *
 
 func (c *kubernetesClient) ListPersistentVolumeClaim(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*ListPvc, error) {
 	out := new(ListPvc)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ListPersistentVolumeClaim", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/ListPersistentVolumeClaim", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -244,7 +244,7 @@ func _Kubernetes_CreateNamespace_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/CreateNamespace",
+		FullMethod: "/kubernetes.Kubernetes/CreateNamespace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).CreateNamespace(ctx, req.(*Namespace))
@@ -262,7 +262,7 @@ func _Kubernetes_DeleteNamespace_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/DeleteNamespace",
+		FullMethod: "/kubernetes.Kubernetes/DeleteNamespace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).DeleteNamespace(ctx, req.(*Namespace))
@@ -280,7 +280,7 @@ func _Kubernetes_ListNamespace_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/ListNamespace",
+		FullMethod: "/kubernetes.Kubernetes/ListNamespace",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).ListNamespace(ctx, req.(*Empty))
@@ -298,7 +298,7 @@ func _Kubernetes_CreateService_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/CreateService",
+		FullMethod: "/kubernetes.Kubernetes/CreateService",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).CreateService(ctx, req.(*Service))
@@ -316,7 +316,7 @@ func _Kubernetes_DeleteService_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/DeleteService",
+		FullMethod: "/kubernetes.Kubernetes/DeleteService",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).DeleteService(ctx, req.(*DeleteService))
@@ -334,7 +334,7 @@ func _Kubernetes_ListService_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/ListService",
+		FullMethod: "/kubernetes.Kubernetes/ListService",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).ListService(ctx, req.(*Namespace))
@@ -352,7 +352,7 @@ func _Kubernetes_CreateDeployment_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/CreateDeployment",
+		FullMethod: "/kubernetes.Kubernetes/CreateDeployment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).CreateDeployment(ctx, req.(*Deployment))
@@ -370,7 +370,7 @@ func _Kubernetes_DeleteDeployment_Handler(srv interface{}, ctx context.Context, 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/DeleteDeployment",
+		FullMethod: "/kubernetes.Kubernetes/DeleteDeployment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).DeleteDeployment(ctx, req.(*DeleteDeployment))
@@ -388,7 +388,7 @@ func _Kubernetes_ListDeployment_Handler(srv interface{}, ctx context.Context, de
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/ListDeployment",
+		FullMethod: "/kubernetes.Kubernetes/ListDeployment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).ListDeployment(ctx, req.(*Namespace))
@@ -406,7 +406,7 @@ func _Kubernetes_CreatePersistentVolumeClaim_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/CreatePersistentVolumeClaim",
+		FullMethod: "/kubernetes.Kubernetes/CreatePersistentVolumeClaim",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).CreatePersistentVolumeClaim(ctx, req.(*Pvc))
@@ -424,7 +424,7 @@ func _Kubernetes_DeletePersistentVolumeClaim_Handler(srv interface{}, ctx contex
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/DeletePersistentVolumeClaim",
+		FullMethod: "/kubernetes.Kubernetes/DeletePersistentVolumeClaim",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).DeletePersistentVolumeClaim(ctx, req.(*DeletePvc))
@@ -442,7 +442,7 @@ func _Kubernetes_ListPersistentVolumeClaim_Handler(srv interface{}, ctx context.
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/v1.Kubernetes/ListPersistentVolumeClaim",
+		FullMethod: "/kubernetes.Kubernetes/ListPersistentVolumeClaim",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).ListPersistentVolumeClaim(ctx, req.(*Namespace))
@@ -454,7 +454,7 @@ func _Kubernetes_ListPersistentVolumeClaim_Handler(srv interface{}, ctx context.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Kubernetes_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.Kubernetes",
+	ServiceName: "kubernetes.Kubernetes",
 	HandlerType: (*KubernetesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
