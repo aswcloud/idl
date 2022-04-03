@@ -3,12 +3,12 @@ package v1;
 option go_package = "github.com/aswcloud/v1/servercomm";
 
 message list_namespace { 
-    repeated Namespace list = 1;
+    repeated namespace list = 1;
 }
 
 message update_namespace { 
-    Namespace source = 1;
-    Namespace newSource = 2;
+    namespace source = 1;
+    namespace newSource = 2;
 }
 
 message namespace {
