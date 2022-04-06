@@ -40,11 +40,6 @@ public protocol V1_KubernetesClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<V1_Void, V1_list_namespace>
 
-  func updateNamespace(
-    _ request: V1_update_namespace,
-    callOptions: CallOptions?
-  ) -> UnaryCall<V1_update_namespace, V1_Result>
-
   func deleteNamespace(
     _ request: V1_namespace,
     callOptions: CallOptions?
@@ -113,23 +108,7 @@ extension V1_KubernetesClientProtocol {
   }
 
   /// Needs, Authorization
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to UpdateNamespace.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  public func updateNamespace(
-    _ request: V1_update_namespace,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<V1_update_namespace, V1_Result> {
-    return self.makeUnaryCall(
-      path: "/v1.Kubernetes/UpdateNamespace",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeUpdateNamespaceInterceptors() ?? []
-    )
-  }
-
+  /// rpc UpdateNamespace(update_namespace) returns (Result);
   /// Needs, Authorization
   ///
   /// - Parameters:
@@ -229,9 +208,6 @@ public protocol V1_KubernetesClientInterceptorFactoryProtocol {
   /// - Returns: Interceptors to use when invoking 'readNamespace'.
   func makeReadNamespaceInterceptors() -> [ClientInterceptor<V1_Void, V1_list_namespace>]
 
-  /// - Returns: Interceptors to use when invoking 'updateNamespace'.
-  func makeUpdateNamespaceInterceptors() -> [ClientInterceptor<V1_update_namespace, V1_Result>]
-
   /// - Returns: Interceptors to use when invoking 'deleteNamespace'.
   func makeDeleteNamespaceInterceptors() -> [ClientInterceptor<V1_namespace, V1_Result>]
 
@@ -281,8 +257,7 @@ public protocol V1_KubernetesProvider: CallHandlerProvider {
   func readNamespace(request: V1_Void, context: StatusOnlyCallContext) -> EventLoopFuture<V1_list_namespace>
 
   /// Needs, Authorization
-  func updateNamespace(request: V1_update_namespace, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
-
+  /// rpc UpdateNamespace(update_namespace) returns (Result);
   /// Needs, Authorization
   func deleteNamespace(request: V1_namespace, context: StatusOnlyCallContext) -> EventLoopFuture<V1_Result>
 
@@ -325,15 +300,6 @@ extension V1_KubernetesProvider {
         responseSerializer: ProtobufSerializer<V1_list_namespace>(),
         interceptors: self.interceptors?.makeReadNamespaceInterceptors() ?? [],
         userFunction: self.readNamespace(request:context:)
-      )
-
-    case "UpdateNamespace":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<V1_update_namespace>(),
-        responseSerializer: ProtobufSerializer<V1_Result>(),
-        interceptors: self.interceptors?.makeUpdateNamespaceInterceptors() ?? [],
-        userFunction: self.updateNamespace(request:context:)
       )
 
     case "DeleteNamespace":
@@ -396,10 +362,6 @@ public protocol V1_KubernetesServerInterceptorFactoryProtocol {
   /// - Returns: Interceptors to use when handling 'readNamespace'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeReadNamespaceInterceptors() -> [ServerInterceptor<V1_Void, V1_list_namespace>]
-
-  /// - Returns: Interceptors to use when handling 'updateNamespace'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeUpdateNamespaceInterceptors() -> [ServerInterceptor<V1_update_namespace, V1_Result>]
 
   /// - Returns: Interceptors to use when handling 'deleteNamespace'.
   ///   Defaults to calling `self.makeInterceptors()`.
