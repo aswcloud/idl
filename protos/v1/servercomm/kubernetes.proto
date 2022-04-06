@@ -17,7 +17,7 @@ service Kubernetes {
     // Needs, Authorization
     rpc ReadNamespace(Void) returns (list_namespace);
     // Needs, Authorization
-    rpc UpdateNamespace(update_namespace) returns (Result);
+    // rpc UpdateNamespace(update_namespace) returns (Result);
     // Needs, Authorization
     rpc DeleteNamespace(namespace) returns (Result);
 
@@ -30,5 +30,11 @@ service Kubernetes {
     rpc UpdateDeployment(update_deployment) returns (Result);
     // Needs, Authorization
     rpc DeleteDeployment(delete_deployment) returns (Result);
-    
+
+    // Needs, Authorization
+    rpc CreateDeployment(deployment) returns (result);
+    // Needs, Authorization
+    rpc DeleteDeployment(delete_deployment) returns (result);
+    // Needs, Authorization
+    rpc ListDeployment(namespace) returns (list_deployment);
 }
