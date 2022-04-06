@@ -30,11 +30,4 @@ service Kubernetes {
     rpc UpdateDeployment(update_deployment) returns (Result);
     // Needs, Authorization
     rpc DeleteDeployment(delete_deployment) returns (Result);
-
-    // Needs, Authorization
-    rpc CreateDeployment(deployment) returns (result);
-    // Needs, Authorization
-    rpc DeleteDeployment(delete_deployment) returns (result);
-    // Needs, Authorization
-    rpc ListDeployment(namespace) returns (list_deployment);
 }
