@@ -23,7 +23,7 @@ type KubernetesClient interface {
 	// Needs, Authorization
 	ReadNamespace(ctx context.Context, in *Void, opts ...grpc.CallOption) (*ListNamespace, error)
 	// Needs, Authorization
-	UpdateNamespace(ctx context.Context, in *UpdateNamespace, opts ...grpc.CallOption) (*Result, error)
+	// rpc UpdateNamespace(update_namespace) returns (Result);
 	// Needs, Authorization
 	DeleteNamespace(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*Result, error)
 	// Needs, Authorization
@@ -56,15 +56,6 @@ func (c *kubernetesClient) CreateNamespace(ctx context.Context, in *Namespace, o
 func (c *kubernetesClient) ReadNamespace(ctx context.Context, in *Void, opts ...grpc.CallOption) (*ListNamespace, error) {
 	out := new(ListNamespace)
 	err := c.cc.Invoke(ctx, "/v1.Kubernetes/ReadNamespace", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubernetesClient) UpdateNamespace(ctx context.Context, in *UpdateNamespace, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
-	err := c.cc.Invoke(ctx, "/v1.Kubernetes/UpdateNamespace", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,7 +116,7 @@ type KubernetesServer interface {
 	// Needs, Authorization
 	ReadNamespace(context.Context, *Void) (*ListNamespace, error)
 	// Needs, Authorization
-	UpdateNamespace(context.Context, *UpdateNamespace) (*Result, error)
+	// rpc UpdateNamespace(update_namespace) returns (Result);
 	// Needs, Authorization
 	DeleteNamespace(context.Context, *Namespace) (*Result, error)
 	// Needs, Authorization
@@ -148,9 +139,6 @@ func (UnimplementedKubernetesServer) CreateNamespace(context.Context, *Namespace
 }
 func (UnimplementedKubernetesServer) ReadNamespace(context.Context, *Void) (*ListNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadNamespace not implemented")
-}
-func (UnimplementedKubernetesServer) UpdateNamespace(context.Context, *UpdateNamespace) (*Result, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateNamespace not implemented")
 }
 func (UnimplementedKubernetesServer) DeleteNamespace(context.Context, *Namespace) (*Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
@@ -212,24 +200,6 @@ func _Kubernetes_ReadNamespace_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubernetesServer).ReadNamespace(ctx, req.(*Void))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Kubernetes_UpdateNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateNamespace)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubernetesServer).UpdateNamespace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/v1.Kubernetes/UpdateNamespace",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesServer).UpdateNamespace(ctx, req.(*UpdateNamespace))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -338,10 +308,6 @@ var Kubernetes_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadNamespace",
 			Handler:    _Kubernetes_ReadNamespace_Handler,
-		},
-		{
-			MethodName: "UpdateNamespace",
-			Handler:    _Kubernetes_UpdateNamespace_Handler,
 		},
 		{
 			MethodName: "DeleteNamespace",
