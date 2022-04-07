@@ -4,6 +4,8 @@ package v1;
 
 option go_package = "github.com/aswcloud/v1/servercomm";
 
+message Test {}
+
 message Void {}
 
 message Uuid { 
