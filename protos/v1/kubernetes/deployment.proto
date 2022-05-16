@@ -30,8 +30,8 @@ message deployment {
     string name = 2;
     string template_name = 3;
     int32 replica_count = 4;
-    deployment_volume volume = 5;
-    deployment_container containers = 6;
+    repeated deployment_volume volume = 5;
+    repeated deployment_container containers = 6;
 }
 
 message delete_deployment { 
