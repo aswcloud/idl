@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package kubernetes;
+
+option go_package = "github.com/aswcloud/v1/kubernetes";
+
+message yaml_data { 
+    string yaml = 1;
+}

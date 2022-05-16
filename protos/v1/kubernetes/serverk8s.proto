@@ -10,6 +10,7 @@ import "pvc.proto";
 import "service.proto";
 import "namespace.proto";
 import "k8s_base.proto";
+import "yaml.proto";
 
 service Kubernetes { 
     rpc CreateNamespace(namespace) returns (result);
@@ -35,4 +36,7 @@ service Kubernetes {
     rpc DeletePersistentVolumeClaim(delete_pvc) returns (result);
     rpc ListPersistentVolumeClaim(namespace) returns (list_pvc);
     
+    rpc DeleteYaml(yaml_data) returns (result);
+    rpc UpdateYaml(yaml_data) returns (result);
+    rpc CreateYaml(yaml_data) returns (result);
 }
