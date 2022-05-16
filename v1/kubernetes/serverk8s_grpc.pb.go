@@ -37,9 +37,6 @@ type KubernetesClient interface {
 	// rpc UpdatePersistentVolumeClaim(Void) returns (Void);
 	DeletePersistentVolumeClaim(ctx context.Context, in *DeletePvc, opts ...grpc.CallOption) (*Result, error)
 	ListPersistentVolumeClaim(ctx context.Context, in *Namespace, opts ...grpc.CallOption) (*ListPvc, error)
-	DeleteYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error)
-	UpdateYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error)
-	CreateYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error)
 }
 
 type kubernetesClient struct {
@@ -158,33 +155,6 @@ func (c *kubernetesClient) ListPersistentVolumeClaim(ctx context.Context, in *Na
 	return out, nil
 }
 
-func (c *kubernetesClient) DeleteYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
-	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/DeleteYaml", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubernetesClient) UpdateYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
-	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/UpdateYaml", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubernetesClient) CreateYaml(ctx context.Context, in *YamlData, opts ...grpc.CallOption) (*Result, error) {
-	out := new(Result)
-	err := c.cc.Invoke(ctx, "/kubernetes.Kubernetes/CreateYaml", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // KubernetesServer is the server API for Kubernetes service.
 // All implementations must embed UnimplementedKubernetesServer
 // for forward compatibility
@@ -208,9 +178,6 @@ type KubernetesServer interface {
 	// rpc UpdatePersistentVolumeClaim(Void) returns (Void);
 	DeletePersistentVolumeClaim(context.Context, *DeletePvc) (*Result, error)
 	ListPersistentVolumeClaim(context.Context, *Namespace) (*ListPvc, error)
-	DeleteYaml(context.Context, *YamlData) (*Result, error)
-	UpdateYaml(context.Context, *YamlData) (*Result, error)
-	CreateYaml(context.Context, *YamlData) (*Result, error)
 	mustEmbedUnimplementedKubernetesServer()
 }
 
@@ -253,15 +220,6 @@ func (UnimplementedKubernetesServer) DeletePersistentVolumeClaim(context.Context
 }
 func (UnimplementedKubernetesServer) ListPersistentVolumeClaim(context.Context, *Namespace) (*ListPvc, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPersistentVolumeClaim not implemented")
-}
-func (UnimplementedKubernetesServer) DeleteYaml(context.Context, *YamlData) (*Result, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteYaml not implemented")
-}
-func (UnimplementedKubernetesServer) UpdateYaml(context.Context, *YamlData) (*Result, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateYaml not implemented")
-}
-func (UnimplementedKubernetesServer) CreateYaml(context.Context, *YamlData) (*Result, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateYaml not implemented")
 }
 func (UnimplementedKubernetesServer) mustEmbedUnimplementedKubernetesServer() {}
 
@@ -492,60 +450,6 @@ func _Kubernetes_ListPersistentVolumeClaim_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Kubernetes_DeleteYaml_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(YamlData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubernetesServer).DeleteYaml(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/kubernetes.Kubernetes/DeleteYaml",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesServer).DeleteYaml(ctx, req.(*YamlData))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Kubernetes_UpdateYaml_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(YamlData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubernetesServer).UpdateYaml(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/kubernetes.Kubernetes/UpdateYaml",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesServer).UpdateYaml(ctx, req.(*YamlData))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Kubernetes_CreateYaml_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(YamlData)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubernetesServer).CreateYaml(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/kubernetes.Kubernetes/CreateYaml",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesServer).CreateYaml(ctx, req.(*YamlData))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Kubernetes_ServiceDesc is the grpc.ServiceDesc for Kubernetes service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -600,18 +504,6 @@ var Kubernetes_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPersistentVolumeClaim",
 			Handler:    _Kubernetes_ListPersistentVolumeClaim_Handler,
-		},
-		{
-			MethodName: "DeleteYaml",
-			Handler:    _Kubernetes_DeleteYaml_Handler,
-		},
-		{
-			MethodName: "UpdateYaml",
-			Handler:    _Kubernetes_UpdateYaml_Handler,
-		},
-		{
-			MethodName: "CreateYaml",
-			Handler:    _Kubernetes_CreateYaml_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
